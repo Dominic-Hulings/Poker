@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/dominic/Projects/CppProjects/Poker/src/deck.cpp" "CMakeFiles/poker.dir/src/deck.cpp.o" "gcc" "CMakeFiles/poker.dir/src/deck.cpp.o.d"
   "/home/dominic/Projects/CppProjects/Poker/src/main.cpp" "CMakeFiles/poker.dir/src/main.cpp.o" "gcc" "CMakeFiles/poker.dir/src/main.cpp.o.d"
   "/home/dominic/Projects/CppProjects/Poker/src/window.cpp" "CMakeFiles/poker.dir/src/window.cpp.o" "gcc" "CMakeFiles/poker.dir/src/window.cpp.o.d"
   )

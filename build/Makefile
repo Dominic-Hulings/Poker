@@ -129,6 +129,30 @@ poker/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/build
 .PHONY : poker/fast
 
+src/deck.o: src/deck.cpp.o
+.PHONY : src/deck.o
+
+# target to build an object file
+src/deck.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/deck.cpp.o
+.PHONY : src/deck.cpp.o
+
+src/deck.i: src/deck.cpp.i
+.PHONY : src/deck.i
+
+# target to preprocess a source file
+src/deck.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/deck.cpp.i
+.PHONY : src/deck.cpp.i
+
+src/deck.s: src/deck.cpp.s
+.PHONY : src/deck.s
+
+# target to generate assembly for a file
+src/deck.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/deck.cpp.s
+.PHONY : src/deck.cpp.s
+
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... poker"
+	@echo "... src/deck.o"
+	@echo "... src/deck.i"
+	@echo "... src/deck.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

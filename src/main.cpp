@@ -1,6 +1,7 @@
 #include<iostream>
-#include"main.h"
+#include<string>
 #include<gtk/gtk.h>
+#include"deck.h"
 
 int main()
 {
