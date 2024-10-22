@@ -5,6 +5,7 @@
 
 int main()
 {
-    std::cout << "Hello world!";
-    return 1;
+  CreateDeck();
+  std::cout << Deck;
+  return 1;
 }
