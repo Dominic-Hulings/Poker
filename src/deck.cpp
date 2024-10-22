@@ -3,22 +3,44 @@
 #include<vector>
 #include"deck.h"
 
+using namespace std;
+
 class Deck
 {
-  public:
-    std::vector<std::string> CreateDeck()
-    {
-      std::vector<std::string> Deck;
-      std::string cardSuits[4] = {"Spades", "Clubs", "Diamonds", "Hearts"};
-      std::string cardValues[13] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+  enum SUITS
+  {
+    Spades,
+    Clubs,
+    Diamonds,
+    Hearts
+  };
 
-      for( std::string suit : cardSuits )
+  enum VALUES
+  {
+    Ace,
+    Two,
+    Three,
+    Four,
+    Five,
+    Six,
+    Seven,
+    Eight,
+    Nine,
+    Ten,
+    Jack,
+    Queen,
+    King
+  };
+
+  public:
+    int CreateNewDeck()
+    {
+      string* NewDeck[52][2];
+      int NewDeckIterator = 0;
+
+      for (  )
       {
-        for( std::string value : cardValues )
-        {
-          Deck.push_back(value + " of " + suit);
-        }
+
       }
-      return Deck;
     }
 };
