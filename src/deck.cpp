@@ -1,26 +1,25 @@
 #include<iostream>
 #include<string>
-#include<vector>
 
 using namespace std;
 
-struct
+struct //* Struct used for storing suits + values and to pass the 2d array deck of cards from Deck.CreateNewDeck() => main.cpp.
 {
   string Suits[4] = {"Spades", "Clubs", "Hearts", "Diamonds"};
   string Values[13] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
   string MainDeck[52][2];
 } CardCreation;
 
-class Deck
+class Deck // Class that takes care of the deck
 {
   public:
-    void CreateNewDeck()
+    void CreateNewDeck() // Creates a new deck of cards (Overrides previous deck) and passes the 2d array ([$VALUE, $SUIT]) to CardCreation.MainDeck
     {
-      int NewDeckIterator = 0;
+      int NewDeckIterator = 0; // A counter for iterating through the array
 
-      for ( int suitCounter = 0; suitCounter < 4; suitCounter++ )
+      for ( int suitCounter = 0; suitCounter < 4; suitCounter++ ) // A counter for iterating through every suit
       {
-        for ( int valueCounter = 0; valueCounter < 13; valueCounter++ )
+        for ( int valueCounter = 0; valueCounter < 13; valueCounter++ ) // A counter for iterating through ever value
         {
           CardCreation.MainDeck[NewDeckIterator][0] = CardCreation.Values[valueCounter];
           CardCreation.MainDeck[NewDeckIterator][1] = CardCreation.Suits[suitCounter];
