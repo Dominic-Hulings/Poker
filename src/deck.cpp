@@ -1,5 +1,8 @@
 #include<iostream>
 #include<string>
+#include<random>
+#include <algorithm>
+#include <iterator>
 
 using namespace std;
 
@@ -25,6 +28,20 @@ class Deck // Class that takes care of the deck
           CardCreation.MainDeck[NewDeckIterator][1] = CardCreation.Suits[suitCounter];
           NewDeckIterator++;
         }
+      }
+    }
+
+    void ShuffleDeck()
+    {
+      random_device rd;
+      mt19937 g(rd());
+
+      string unshuffledDeck[52][2];
+      string shuffledDeck[52];
+
+      for ( int iteratorCounter = 0; iteratorCounter < 52; iteratorCounter++ )
+      {
+        unshuffledDeck[iteratorCounter] = CardCreation.MainDeck[iteratorCounter];
       }
     }
 };
