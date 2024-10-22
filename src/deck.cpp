@@ -3,41 +3,29 @@
 #include<vector>
 
 using namespace std;
-typedef string* tNewDeck[52][2];
+
+struct
+{
+  string Suits[4] = {"Spades", "Clubs", "Hearts", "Diamonds"};
+  string Values[13] = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
+  string MainDeck[52][2];
+} CardCreation;
 
 class Deck
 {
   public:
-    tuple <vector<string>, vector<string>> CardCreationData()
+    void CreateNewDeck()
     {
-      tuple <vector<string>, vector<string>> SuitsAndValues[2];
-      vector<string> Suits = {"Spades", "Clubs", "Hearts", "Diamonds"};
-      vector<string> Values = {"Ace", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-      return make_tuple(Suits, Values);
-    }
-
-    tNewDeck* CreateNewDeck()
-    {
-
-      string* NewDeck[52][2];
-      tNewDeck* pNewDeck = &NewDeck;
-
       int NewDeckIterator = 0;
-      
-      vector<string> Suits, Values;
-      tuple <vector<string>, vector<string>> SuitsPlusValues(Suits, Values);
-      SuitsPlusValues = CardCreationData();
 
       for ( int suitCounter = 0; suitCounter < 4; suitCounter++ )
       {
         for ( int valueCounter = 0; valueCounter < 13; valueCounter++ )
         {
-          NewDeck[NewDeckIterator][0] = &Suits[suitCounter];
-          NewDeck[NewDeckIterator][1] = &Values[valueCounter];
+          CardCreation.MainDeck[NewDeckIterator][0] = CardCreation.Values[valueCounter];
+          CardCreation.MainDeck[NewDeckIterator][1] = CardCreation.Suits[suitCounter];
           NewDeckIterator++;
         }
       }
-
-      return pNewDeck;
     }
 };
