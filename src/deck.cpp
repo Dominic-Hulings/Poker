@@ -31,7 +31,7 @@ public:
     }
   }
 
-  void ShuffleDeck()
+/*void ShuffleDeck()
   {
     random_device rd;
     mt19937 g(rd());
@@ -66,5 +66,5 @@ public:
       CardCreation.MainDeck[iteratorCounter][0] = shuffledDeck[iteratorCounter][0];
       CardCreation.MainDeck[iteratorCounter][1] = shuffledDeck[iteratorCounter][1];
     }
-  }
+  }*/
 };
