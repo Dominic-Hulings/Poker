@@ -2,9 +2,8 @@
 #include <string>
 #include <random>
 #include <algorithm>
-#include <iterator>
 
-using namespace std;
+using std::string, std::random_device, std::mt19937, std::shuffle, std::vector, std::cout;
 
 struct //* Struct used for storing suits + values and to pass the 2d array deck of cards from Deck.CreateNewDeck() => main.cpp.
 {
@@ -31,13 +30,13 @@ public:
     }
   }
 
-/*void ShuffleDeck()
+  void ShuffleDeck()
   {
     random_device rd;
     mt19937 g(rd());
 
     string unshuffledDeck[52][2];
-    int shufflingDeck[52];
+    vector<int> shufflingDeck;
     string shuffledDeck[52][2];
 
     for (int iteratorCounter = 0; iteratorCounter < 52; iteratorCounter++)
@@ -54,10 +53,10 @@ public:
     shuffle(shufflingDeck.begin(), shufflingDeck.end(), g);
     int iteratorCounter = 0;
 
-    for (int order : shufflingDeck)
+    for (auto num = shufflingDeck.begin(); num != shufflingDeck.end(); num++)
     {
-      shuffledDeck[iteratorCounter][0] = unshuffledDeck[order][0];
-      shuffledDeck[iteratorCounter][1] = unshuffledDeck[order][1];
+      shuffledDeck[iteratorCounter][0] = unshuffledDeck[*num][0];
+      shuffledDeck[iteratorCounter][1] = unshuffledDeck[*num][1];
       iteratorCounter++;
     }
 
@@ -65,6 +64,10 @@ public:
     {
       CardCreation.MainDeck[iteratorCounter][0] = shuffledDeck[iteratorCounter][0];
       CardCreation.MainDeck[iteratorCounter][1] = shuffledDeck[iteratorCounter][1];
+      cout << CardCreation.MainDeck[iteratorCounter][0];
+      cout << CardCreation.MainDeck[iteratorCounter][1];
     }
-  }*/
+
+
+  }
 };

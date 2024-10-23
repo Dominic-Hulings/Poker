@@ -3,14 +3,14 @@
 #include <gtk/gtk.h>
 #include "deck.cpp"
 
-using namespace std;
+using std::string, std::cout;
 
 int main()
 {
   Deck NewDeck; // Creates a new Deck object from deck.cpp
 
   NewDeck.CreateNewDeck(); // Creates a new deck array from deck.cpp
-  //NewDeck.ShuffleDeck();
+  NewDeck.ShuffleDeck();
 
   for (int test = 0; test < 52; test++)
   {
