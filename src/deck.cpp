@@ -15,7 +15,7 @@ struct //* Struct used for storing suits + values and to pass the 2d array deck 
 class Deck // Class that takes care of the deck
 {
 public:
-  void CreateNewDeck() // Creates a new deck of cards (Overrides previous deck) and passes the 2d array ([$VALUE, $SUIT]) to CardCreation.MainDeck
+  Deck() // Creates a new deck of cards (Overrides previous deck) and passes the 2d array ([$VALUE, $SUIT]) to CardCreation.MainDeck
   {
     int NewDeckIterator = 0; // A counter for iterating through the array
 
