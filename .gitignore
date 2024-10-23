@@ -33,6 +33,3 @@
 
 # Build files
 build/
-
-# Clang cache
-.cache/

@@ -24,7 +24,7 @@
                 "/usr/lib/x86_64-linux-gnu/graphene-1.0/include"
             ],
             "defines": [],
-            "compilerPath": "/home/dominic/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/18.1.3/clangd_18.1.3/bin/clangd",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c17",
             "cppStandard": "gnu++17",
             "intelliSenseMode": "linux-gcc-x64"
