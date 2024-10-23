@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named poker
+# Target rules for targets named poker.o
 
 # Build rule for target.
-poker: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 poker
-.PHONY : poker
+poker.o: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 poker.o
+.PHONY : poker.o
 
 # fast build rule for target.
-poker/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/build
-.PHONY : poker/fast
+poker.o/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/build
+.PHONY : poker.o/fast
 
 src/deck.o: src/deck.cpp.o
 .PHONY : src/deck.o
 
 # target to build an object file
 src/deck.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/deck.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/src/deck.cpp.o
 .PHONY : src/deck.cpp.o
 
 src/deck.i: src/deck.cpp.i
@@ -142,7 +142,7 @@ src/deck.i: src/deck.cpp.i
 
 # target to preprocess a source file
 src/deck.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/deck.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/src/deck.cpp.i
 .PHONY : src/deck.cpp.i
 
 src/deck.s: src/deck.cpp.s
@@ -150,7 +150,7 @@ src/deck.s: src/deck.cpp.s
 
 # target to generate assembly for a file
 src/deck.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/deck.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/src/deck.cpp.s
 .PHONY : src/deck.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -158,7 +158,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -166,7 +166,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -174,7 +174,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 src/window.o: src/window.cpp.o
@@ -182,7 +182,7 @@ src/window.o: src/window.cpp.o
 
 # target to build an object file
 src/window.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/window.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/src/window.cpp.o
 .PHONY : src/window.cpp.o
 
 src/window.i: src/window.cpp.i
@@ -190,7 +190,7 @@ src/window.i: src/window.cpp.i
 
 # target to preprocess a source file
 src/window.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/window.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/src/window.cpp.i
 .PHONY : src/window.cpp.i
 
 src/window.s: src/window.cpp.s
@@ -198,7 +198,7 @@ src/window.s: src/window.cpp.s
 
 # target to generate assembly for a file
 src/window.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.dir/build.make CMakeFiles/poker.dir/src/window.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/poker.o.dir/build.make CMakeFiles/poker.o.dir/src/window.cpp.s
 .PHONY : src/window.cpp.s
 
 # Help Target
@@ -209,7 +209,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... poker"
+	@echo "... poker.o"
 	@echo "... src/deck.o"
 	@echo "... src/deck.i"
 	@echo "... src/deck.s"

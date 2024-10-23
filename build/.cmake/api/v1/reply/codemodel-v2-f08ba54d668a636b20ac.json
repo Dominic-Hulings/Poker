@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "poker::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-poker-Debug-3ed73463fe6f759ea8f3.json",
-					"name" : "poker",
+					"id" : "poker.o::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-poker.o-Debug-b24a76973860862d4153.json",
+					"name" : "poker.o",
 					"projectIndex" : 0
 				}
 			]

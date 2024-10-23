@@ -1,11 +1,17 @@
-FROM scratch
-WORKDIR /app
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    libgtk-4-dev \
+    pkg-config \
+    cmake \
+    make
+
 COPY . .
 
-RUN apt-get install libgtk-4-dev
-EXSPOSE 5000
+RUN mkdir build
+RUN cd build
+RUN cmake ..
+RUN make all
 
-RUN useradd app
-USER app
-
-CMD []
+CMD ./poker.o

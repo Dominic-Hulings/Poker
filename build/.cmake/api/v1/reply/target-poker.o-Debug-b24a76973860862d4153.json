@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "poker"
+			"path" : "poker.o"
 		}
 	],
 	"backtrace" : 1,
@@ -141,7 +141,7 @@
 			]
 		}
 	],
-	"id" : "poker::@6890427a1f51a3e7e1df",
+	"id" : "poker.o::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -217,8 +217,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "poker",
-	"nameOnDisk" : "poker",
+	"name" : "poker.o",
+	"nameOnDisk" : "poker.o",
 	"paths" : 
 	{
 		"build" : ".",
