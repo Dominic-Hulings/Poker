@@ -5,11 +5,13 @@
 #include "deck.h"
 
 using std::string, std::random_device, std::mt19937, std::shuffle, std::vector, std::cout;
-
 using namespace deckHFile;
 
 Deck::Deck()
 {
-  
+  for (string suit : Deck.Suits)
+  {
+
+  } 
 }
 
