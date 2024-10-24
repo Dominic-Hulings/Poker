@@ -10,8 +10,9 @@ using namespace deckHFile;
 int main() 
 {
   Deck deck;
+  deck.Shuffle();
 
-  for (int i = 0; i < 52; i++)
+  while(!deck.MainDeck.empty())
   {
     cout << deck.MainDeck.top().first << deck.MainDeck.top().second << "\n";
     deck.MainDeck.pop();
