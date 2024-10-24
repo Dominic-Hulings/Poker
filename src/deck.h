@@ -5,7 +5,7 @@
 
 namespace deckHFile
 {
-  class Deck : public baseCardData
+  class Deck : public BaseCardData
   {
     public:
       Deck();
