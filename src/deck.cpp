@@ -9,9 +9,16 @@ using namespace deckHFile;
 
 Deck::Deck()
 {
-  for (string suit : Deck.Suits)
-  {
+  int iteratorCounter = 0;
 
-  } 
+  for (string suit : this->Suits)
+  {
+    for (string value : this->Values)
+    {
+      this->MainDeck[iteratorCounter][0] = value;
+      this->MainDeck[iteratorCounter][1] = suit;
+      ++iteratorCounter;
+    }
+  }
 }
 

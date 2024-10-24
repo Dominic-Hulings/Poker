@@ -5,11 +5,10 @@
 
 namespace deckHFile
 {
-  class Deck : baseCardData
+  class Deck : public baseCardData
   {
     public:
       Deck();
-      void NewDeck();
       void Shuffle();
   };
 }

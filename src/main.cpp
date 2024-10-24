@@ -9,6 +9,13 @@ using namespace deckHFile;
 int main()
 {
 
-  Deck newdeck;
+  Deck deck;
+
+  for(int i = 0; i < 52; i++)
+  {
+    cout << deck.MainDeck[i][0];
+    cout << deck.MainDeck[i][1] << "\n";
+  }
+
   return 1;
 }
