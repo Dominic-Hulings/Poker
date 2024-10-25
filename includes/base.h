@@ -4,6 +4,8 @@
 #include<string>
 #include<stack>
 
+// Just a class for Deck to inherit from containing base data
+
 class BaseCardData
 {
   public:
