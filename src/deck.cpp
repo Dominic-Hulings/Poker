@@ -38,7 +38,7 @@ void Deck::Shuffle()
     iteratorCounter++;
   }
 
-  shuffle(orderOfShuffledDeck.begin(), orderOfShuffledDeck.begin(), default_random_engine(seed));
+  shuffle(orderOfShuffledDeck.begin(), orderOfShuffledDeck.end(), default_random_engine(seed));
 
   for(int num : orderOfShuffledDeck)
   {
@@ -46,14 +46,3 @@ void Deck::Shuffle()
     this->MainDeck.push(moveCard);
   }
 }
-
-/*
-
-this->MainDeck[iteratorCounter][0] = value;
-      this->MainDeck[iteratorCounter][1] = suit;
-      ++iteratorCounter;
-
-
-
-
-*/
