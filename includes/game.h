@@ -1,17 +1,17 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "dealer.h"
+#include <string>
 
-namespace gameHFile
+class Table
 {
-  class Table
-  {
-    public:
-      int playerCount();
+  public:
+    Table(int startingPlayers, std::string tableName, bool isSave);
+    int playerCount;
+    std::string tableName;
 
-    private:
-  }
-} // namespace gameHFile
+  private:
+    class TableDealer;
+};
 
 #endif

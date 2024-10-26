@@ -1,13 +1,13 @@
 #ifndef DEALER_H
 #define DEALER_H
 
-#include "deck.h"
-
 class Dealer
 {
-  protected:
+  public:
     Dealer();
+  private:
     class DealerDeck;
+    int buttonPositions[3];
 };
 
 #endif
