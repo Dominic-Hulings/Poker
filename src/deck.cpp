@@ -7,7 +7,6 @@
 #include <string>
 
 using std::string, std::pair, std::shuffle, std::default_random_engine, std::array;
-using namespace deckHFile; // Links main.cpp to deck.cpp through deck.h in the namespace deckHFile
 
 Deck::Deck() // Sets the Deck constructor
 {
