@@ -6,11 +6,15 @@
 class Table
 {
   public:
-    Table(int startingPlayers, std::string tableName, bool isSave);
-    int playerCount;
+    Table(int inMaxPlayers, std::string tableName, bool isSave);
     std::string tableName;
-
+    int GETplayerCount();
+    int GETmaxPlayers();
+    int SETplayerCount();
+    int SETmaxPlayers();
   private:
+    int playerCount;
+    int maxPlayers;
     class TableDealer;
 };
 

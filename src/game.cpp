@@ -5,9 +5,13 @@
 
 using std::string;
 
-Table::Table(int startingPlayers, string tableName, bool isSave)
+Table::Table(int inMaxPlayers, string tableName, bool isSave)
 {
   Dealer TableDealer;
-  this->playerCount = startingPlayers;
-
+  maxPlayers = inMaxPlayers;
 };
+
+int Table::GETplayerCount()
+{
+  return playerCount;
+}
