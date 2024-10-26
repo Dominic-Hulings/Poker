@@ -1,18 +1,17 @@
 #include <iostream>
 #include <string>
-//#include <stack>
-//#include <gtk/gtk.h>
-//#include "deck.h"
+// #include <stack>
+// #include <gtk/gtk.h>
+// #include "deck.h"
 
 using std::string, std::cout;
-//using namespace deckHFile; // Links main.cpp to deck.cpp through deck.h in the namespace deckHFile
+// using namespace deckHFile; // Links main.cpp to deck.cpp through deck.h in the namespace deckHFile
 
 int main() //* Where the main function will be, just used for testing as of now
 {
   cout << "Placeholder" << "\n";
   return 1;
 }
-
 
 /*
 Deck deck; // Create new object from deck.cpp using deck.h
