@@ -20,6 +20,8 @@ Deck::Deck() // Sets the Deck constructor
       this->MainDeck.push(card); // Put the pair of value and suit onto a stack
     }
   }
+
+  this->Shuffle();
 }
 
 void Deck::Shuffle() // Sets the Deck's shuffle method

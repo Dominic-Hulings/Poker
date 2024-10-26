@@ -3,10 +3,11 @@
 
 #include "deck.h"
 
-class Dealer : public Deck
+class Dealer
 {
   protected:
-
+    Dealer();
+    class DealerDeck;
 };
 
 #endif

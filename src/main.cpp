@@ -9,17 +9,18 @@ using std::string, std::cout;
 
 int main() //* Where the main function will be, just used for testing as of now
 {
-  cout << "Placeholder" << "\n";
+  cout << "test" << "\n";
   return 1;
 }
 
 /*
+
 Deck deck; // Create new object from deck.cpp using deck.h
-  deck.Shuffle(); // Calls shuffle function from object
 
   while(!deck.MainDeck.empty()) // Just to display if the cards are shuffled (Testing purposes)
   {
     cout << deck.MainDeck.top().first << deck.MainDeck.top().second << "\n";
     deck.MainDeck.pop();
   }
+
 */

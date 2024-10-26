@@ -1,9 +1,9 @@
+#include <string>
 
+#include "deck.h"
+#include "dealer.h"
 
-
-class Dealer
+Dealer::Dealer()
 {
-  public:
-
-  protected:
+  Deck DealerDeck;
 };
