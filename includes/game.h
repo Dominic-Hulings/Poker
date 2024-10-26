@@ -10,8 +10,9 @@ class Table
     std::string tableName;
     int GETplayerCount();
     int GETmaxPlayers();
-    int SETplayerCount();
-    int SETmaxPlayers();
+    void SETmaxPlayers(int max);
+    void SETplayerCount(int pCount);
+    void NewHand();
   private:
     int playerCount;
     int maxPlayers;
