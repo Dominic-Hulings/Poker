@@ -7,12 +7,27 @@ Dealer::Dealer()
 {
   Deck DealerDeck;
   this->SETButtonPositions(1, 2, 3);
+  string* ptest = &this::Hand;
 }
 
-void Dealer::preCheck()
+void Dealer::preHandCheck()
 {
   //TODO: Add checks to prevent cheating
-  this->Hand;
+  Dealer::Hand ThisHand;
+  ThisHand.CheckResult(1);
+}
+
+Dealer::Hand Hand()
+{
+  string* pHandObj = ;
+}
+
+Dealer::Hand CheckResult(int checkResult)
+{
+  if(int checkResult = 1)
+  {
+    
+  }
 }
 
 void Dealer::Hand::CurrentHand()

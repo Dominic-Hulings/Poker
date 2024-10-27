@@ -8,11 +8,14 @@ class Dealer
   public:
     Dealer();
     std::string GETButtonPositions();
-    void preCheck();
+    std::string* ptest;
+    void preHandCheck();
     class Hand
     {
       public:
         Hand();
+        std::string* pHandObj;
+        void CheckResult(int checkResult);
       private:
         void CurrentHand();
     };
