@@ -7,7 +7,7 @@
 
 #include "deck.h"
 
-using std::string, std::pair, std::shuffle, std::default_random_engine, std::array;
+using std::string, std::pair, std::shuffle, std::default_random_engine, std::array, std::pair;
 
 Deck::Deck() // Sets the Deck constructor
 {
@@ -23,6 +23,13 @@ Deck::Deck() // Sets the Deck constructor
   }
 
   this->Shuffle();
+}
+
+std::pair<std::string, std::string> Deck::GETTopMainDeck()
+{
+  pair<string, string> x = MainDeck.top();
+  MainDeck.pop();
+  return x;
 }
 
 void Deck::Shuffle() // Sets the Deck's shuffle method

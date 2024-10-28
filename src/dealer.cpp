@@ -1,12 +1,19 @@
-#include<iostream>
+//#include<iostream>
 
 #include "deck.h"
 #include "dealer.h"
 
-using std::string, std::cout, std::to_string;
+using std::string, std::to_string;
 
 Dealer::Dealer()
 {
+  Deck deck;
+
+  for(int counter = 0; counter < 52; counter++)
+  {
+    DealerDeck.push(deck.GETTopMainDeck());
+  }
+
   this->SETButtonPositions(1, 2, 3);
 }
 
