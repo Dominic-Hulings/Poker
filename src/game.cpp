@@ -7,7 +7,7 @@ using std::string;
 
 Table::Table(int inMaxPlayers, string inTableName, bool isSave)
 {
-  Dealer TableDealer;
+  this->TableDealer = new Dealer;
   maxPlayers = inMaxPlayers;
   tableName = inTableName;
   SETplayerCount(1);
@@ -15,7 +15,7 @@ Table::Table(int inMaxPlayers, string inTableName, bool isSave)
 
 void Table::NewHand()
 {
-  TableDealer.preCheck();
+  
 }
 
 int Table::GETplayerCount()

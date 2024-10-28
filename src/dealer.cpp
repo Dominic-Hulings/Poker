@@ -1,38 +1,22 @@
+#include<iostream>
+
 #include "deck.h"
 #include "dealer.h"
 
-using std::string, std::to_string;
+using std::string, std::cout, std::to_string;
+
+class Dealer::DealerDeck : Deck
+{
+  public:
+    DealerDeck()
+    {
+      Deck();
+    }
+};
 
 Dealer::Dealer()
 {
-  Deck DealerDeck;
   this->SETButtonPositions(1, 2, 3);
-  string* ptest = &this::Hand;
-}
-
-void Dealer::preHandCheck()
-{
-  //TODO: Add checks to prevent cheating
-  Dealer::Hand ThisHand;
-  ThisHand.CheckResult(1);
-}
-
-Dealer::Hand Hand()
-{
-  string* pHandObj = ;
-}
-
-Dealer::Hand CheckResult(int checkResult)
-{
-  if(int checkResult = 1)
-  {
-    
-  }
-}
-
-void Dealer::Hand::CurrentHand()
-{
-
 }
 
 string Dealer::GETButtonPositions()
@@ -46,4 +30,21 @@ void Dealer::SETButtonPositions(int dPos, int lbPos, int bbPos)
   this->buttonPositions[0] = dPos;
   this->buttonPositions[1] = lbPos;
   this->buttonPositions[2] = bbPos;
-};
+}
+
+void Dealer::preHandCheck()
+{
+  // TODO: Check if its time to start a new hand and return true or false and pass it to Hand function
+  this->Hand(true);
+}
+
+int Dealer::Hand(bool isTime)
+{
+  if(!isTime)
+  {
+    return 0;
+  }
+
+
+  return 1;
+}

@@ -1,10 +1,11 @@
-#include "deck.h"
 #include <algorithm>
 #include <array>
 #include <ctime>
 #include <random>
 #include <stack>
 #include <string>
+
+#include "deck.h"
 
 using std::string, std::pair, std::shuffle, std::default_random_engine, std::array;
 
