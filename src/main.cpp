@@ -7,7 +7,6 @@
 #include "dealer.h"
 
 using std::string, std::cout;
-// using namespace deckHFile; // Links main.cpp to deck.cpp through deck.h in the namespace deckHFile
 
 int main() //* Where the main function will be, just used for testing as of now
 {

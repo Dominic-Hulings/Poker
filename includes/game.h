@@ -3,6 +3,8 @@
 
 #include <string>
 
+#include "dealer.h"
+
 class Table
 {
   public:
@@ -16,7 +18,7 @@ class Table
   private:
     int playerCount;
     int maxPlayers;
-    class TableDealer;
+    Dealer TableDealer;
 };
 
 #endif

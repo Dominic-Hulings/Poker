@@ -1,7 +1,6 @@
 #ifndef DECK_H
 #define DECK_H
 
-#include <stack>
 #include <string>
 
 #include "base.h"                // Includes base card data
