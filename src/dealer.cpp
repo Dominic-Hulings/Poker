@@ -5,15 +5,6 @@
 
 using std::string, std::cout, std::to_string;
 
-class Dealer::DealerDeck : Deck
-{
-  public:
-    DealerDeck()
-    {
-      Deck();
-    }
-};
-
 Dealer::Dealer()
 {
   this->SETButtonPositions(1, 2, 3);

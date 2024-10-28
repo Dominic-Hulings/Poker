@@ -1,13 +1,13 @@
 #include <string>
 
 #include "game.h"
-#include "dealer.h"
+//#include "dealer.h"
 
 using std::string;
 
 Table::Table(int inMaxPlayers, string inTableName, bool isSave)
 {
-  this->TableDealer = new Dealer;
+  //this->TableDealer = new Dealer;
   maxPlayers = inMaxPlayers;
   tableName = inTableName;
   SETplayerCount(1);

@@ -11,7 +11,7 @@ class Dealer
     void preHandCheck();
   private:
     int Hand(bool isTime);
-    class DealerDeck;
+    void DealerDeck();
     void SETButtonPositions(int dPos, int lbPos, int bbPos);
     int buttonPositions[3];
 };
