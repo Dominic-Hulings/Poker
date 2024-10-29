@@ -6,8 +6,9 @@
 #include <string>
 
 #include "deck.h"
+#include "global.h"
 
-using std::string, std::pair, std::shuffle, std::default_random_engine, std::array, std::pair;
+using std::string, std::pair, std::shuffle, std::default_random_engine, std::array, std::pair, ::CustomTypes;
 
 Deck::Deck() // Sets the Deck constructor
 {
@@ -17,7 +18,7 @@ Deck::Deck() // Sets the Deck constructor
   {
     for (string value : this->Values) // Values is specified in base.h
     {
-      pair<string, string> card = {value, suit};
+      Card card = {value, suit};
       this->MainDeck.push(card); // Put the pair of value and suit onto a stack
     }
   }
@@ -25,7 +26,7 @@ Deck::Deck() // Sets the Deck constructor
   this->Shuffle();
 }
 
-std::pair<std::string, std::string> Deck::GETTopMainDeck()
+CT::Card Deck::GETTopMainDeck()
 {
   pair<string, string> x = MainDeck.top();
   MainDeck.pop();
@@ -35,8 +36,8 @@ std::pair<std::string, std::string> Deck::GETTopMainDeck()
 void Deck::Shuffle() // Sets the Deck's shuffle method
 {
   unsigned seed = 0;
-  pair<string, string> shufflingDeck[52]; //* Temporary array for shuffling
-  array<int, 52> orderOfShuffledDeck;     //* Array holding numbers 0-51 representing each index of shufflingDeck
+  CT::Card shufflingDeck[52];         //* Temporary array for shuffling
+  array<int, 52> orderOfShuffledDeck; //* Array holding numbers 0-51 representing each index of shufflingDeck
   int iteratorCounter = 0;
 
   while (!this->MainDeck.empty()) // Until the stack is empty

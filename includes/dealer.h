@@ -6,7 +6,7 @@
 
 #include "global.h"
 
-class Dealer : CustomTypes
+class Dealer : CT
 {
   public:
     Dealer();

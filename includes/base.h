@@ -8,7 +8,7 @@
 
 // Just a class for Deck to inherit from containing base data
 
-class BaseCardData : protected CustomTypes
+class BaseCardData : protected CT
 {
   public:
     const std::string Suits[4] = {"Spades", "Clubs", "Hearts", "Diamonds"};

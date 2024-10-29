@@ -2,6 +2,7 @@
 
 #include "dealer.h"
 #include "deck.h"
+//#include "global.h"
 
 using std::string, std::to_string;
 

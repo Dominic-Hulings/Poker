@@ -3,9 +3,9 @@
 
 #include <string>
 
-class CustomTypes
+struct CT
 {
-  protected:
+  public:
     typedef std::pair<std::string, std::string> Card;
 };
 
