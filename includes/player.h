@@ -8,6 +8,7 @@ class Player
   public:
     Player(std::string inUserName);
     std::string GETuserName();
+    std::string GETplayerID();
     void SETplayerID(std::string id);
   private:
     std::string userName;

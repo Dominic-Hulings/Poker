@@ -1,16 +1,23 @@
 #include <string>
 #include <iostream>
 #include <ctime>
-#include <random>
 
-//#include "player.h"
-//#include "global.h"
+#include "player.h"
+#include "table.h"
 
 using std::string, std::cout;
 
 int main() //* Where the main function will be, just used for testing as of now
 {
-  //Player Dominic("User-Dominic");
+  Player Dominic("User-Dominic");
+  Table NewTable(5, "placeholder_name", false);
+  NewTable.NewPlayerJoin(Dominic);
+
+  std::pair<string, string> x = NewTable.playerIDsVec.front();
+
+  cout << x.first << ", " << x.second << "\n";
+  cout << Dominic.GETuserName();
+  cout << Dominic.GETplayerID();
 
   return 1;
 }

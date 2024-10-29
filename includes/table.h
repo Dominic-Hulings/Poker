@@ -18,11 +18,12 @@ class Table
     void SETplayerCount(int pCount);
     int NewPlayerJoin(Player player);
     void NewHand();
+    std::vector<std::pair<std::string, std::string>> playerIDsVec;
 
   private:
     int playerCount;
     int maxPlayers;
-    std::vector<std::pair<std::string, std::string>> playerIDsVec;
+    //std::vector<std::pair<std::string, std::string>> playerIDsVec;
     Dealer TableDealer;
 };
 

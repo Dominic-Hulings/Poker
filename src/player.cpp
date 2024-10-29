@@ -18,6 +18,11 @@ string Player::GETuserName()
   return userName;
 }
 
+string Player::GETplayerID()
+{
+  return playerID;
+}
+
 void Player::SETplayerID(string id)
 {
   playerID = id;

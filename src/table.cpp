@@ -7,7 +7,7 @@
 #include "player.h"
 //#include "global.h"
 
-using std::string, std::cout;
+using std::string, std::cout, std::to_string;
 
 /*
 private class Table::TableDealer
@@ -69,14 +69,16 @@ int Table::NewPlayerJoin(Player player)
 
   std::random_device rDev;
   std::mt19937 rng(rDev());
-  std::uniform_int_distribution<std::mt19937::result_type> dist62(1,62);
+  std::uniform_int_distribution<std::mt19937::result_type> dist62(1, 62);
   string playerID;
 
   for (int counter = 0; counter < 20; counter++)  
   {
-    playerID += dist62(rng);
+    playerID += to_string(charList[dist62(rng)]);
   }
 
   playerIDsVec.push_back({playerID, player.GETuserName()});
+  player.SETplayerID(playerID);
 
+  return 1;
 }
