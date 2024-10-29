@@ -1,11 +1,13 @@
 #include <string>
 
+#include "player.h"
 //#include "global.h"
 
 using std::string;
 
 int main() //* Where the main function will be, just used for testing as of now
 {
+  Player Dominic("User-Dominic");
   
 
   return 1;

@@ -4,6 +4,7 @@
 #include <string>
 
 #include "dealer.h"
+#include "player.h"
 
 class Table
 {
@@ -14,7 +15,7 @@ class Table
     int GETmaxPlayers();
     void SETmaxPlayers(int max);
     void SETplayerCount(int pCount);
-    void NewPlayerJoin();
+    int NewPlayerJoin(Player);
     void NewHand();
 
   private:

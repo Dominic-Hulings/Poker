@@ -1,8 +1,12 @@
 #include <string>
+#include <iostream>
+#include <random>
 
 #include "table.h"
+#include "player.h"
+//#include "global.h"
 
-using std::string;
+using std::string, std::cout, std::random_device, std::mt19937;
 
 /*
 private class Table::TableDealer
@@ -52,7 +56,17 @@ void Table::NewHand()
   this->TableDealer.preHandCheck();
 }
 
-void Table::NewPlayerJoin()
+int Table::NewPlayerJoin(Player)
 {
-  
+  if(!(maxPlayers >= playerCount))
+  {
+    cout << "Max Player limit met and/or exceeded" << "\n";
+    return 0;
+  }
+
+  const string charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+
+  int playerID = playerCount++;
+
 }

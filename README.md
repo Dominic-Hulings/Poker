@@ -42,7 +42,7 @@ Functions:
 |     |____Miniumum + max bet size
 |     |____Check if player is out
 
-
+The play moves clockwise around the table, starting with action to the left of the dealer button. The 'button' is a round disc that sits in front of a player and is rotated one seat to the left every hand.
 
 DISCLAIMER!
   The app uses FAKE MONEY, no actual gambling is being incited

@@ -10,8 +10,6 @@ class Player
     void GETuserName();
   private:
     std::string UserName;
-    
-
 };
 
 #endif
