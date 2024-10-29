@@ -1,12 +1,13 @@
 #include <string>
 #include <iostream>
 #include <random>
+#include <ctime>
 
 #include "table.h"
 #include "player.h"
 //#include "global.h"
 
-using std::string, std::cout, std::random_device, std::mt19937;
+using std::string, std::cout;
 
 /*
 private class Table::TableDealer
@@ -56,7 +57,7 @@ void Table::NewHand()
   this->TableDealer.preHandCheck();
 }
 
-int Table::NewPlayerJoin(Player)
+int Table::NewPlayerJoin(Player player)
 {
   if(!(maxPlayers >= playerCount))
   {
@@ -66,7 +67,16 @@ int Table::NewPlayerJoin(Player)
 
   const string charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+  std::random_device rDev;
+  std::mt19937 rng(rDev());
+  std::uniform_int_distribution<std::mt19937::result_type> dist62(1,62);
+  string playerID;
 
-  int playerID = playerCount++;
+  for (int counter = 0; counter < 20; counter++)  
+  {
+    playerID += dist62(rng);
+  }
+
+  playerIDsVec.push_back({playerID, player.GETuserName()});
 
 }

@@ -7,9 +7,11 @@ class Player
 {
   public:
     Player(std::string inUserName);
-    void GETuserName();
+    std::string GETuserName();
+    void SETplayerID(std::string id);
   private:
-    std::string UserName;
+    std::string userName;
+    std::string playerID;
 };
 
 #endif

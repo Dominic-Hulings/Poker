@@ -1,14 +1,16 @@
 #include <string>
+#include <iostream>
+#include <ctime>
+#include <random>
 
-#include "player.h"
+//#include "player.h"
 //#include "global.h"
 
-using std::string;
+using std::string, std::cout;
 
 int main() //* Where the main function will be, just used for testing as of now
 {
-  Player Dominic("User-Dominic");
-  
+  //Player Dominic("User-Dominic");
 
   return 1;
 }

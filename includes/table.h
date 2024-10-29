@@ -2,6 +2,7 @@
 #define GAME_H
 
 #include <string>
+#include <vector>
 
 #include "dealer.h"
 #include "player.h"
@@ -15,12 +16,13 @@ class Table
     int GETmaxPlayers();
     void SETmaxPlayers(int max);
     void SETplayerCount(int pCount);
-    int NewPlayerJoin(Player);
+    int NewPlayerJoin(Player player);
     void NewHand();
 
   private:
     int playerCount;
     int maxPlayers;
+    std::vector<std::pair<std::string, std::string>> playerIDsVec;
     Dealer TableDealer;
 };
 
