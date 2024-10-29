@@ -1,6 +1,6 @@
 #include <string>
 
-#include "game.h"
+#include "table.h"
 //#include "dealer.h"
 
 using std::string;

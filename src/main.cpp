@@ -4,19 +4,14 @@
 // #include <gtk/gtk.h>
 
 // #include "deck.h"
-#include "dealer.h"
+// #include "dealer.h"
+#include "table.h"
 
 using std::string, std::cout;
 
 int main() //* Where the main function will be, just used for testing as of now
 {
-  Dealer y;
   
-  while(!y.DealerDeck.empty()) // Just to display if the cards are shuffled (Testing purposes)
-  {
-    cout << y.DealerDeck.top().first << y.DealerDeck.top().second << "\n";
-    y.DealerDeck.pop();
-  }
 
   return 1;
 }
