@@ -8,7 +8,9 @@
 #include "deck.h"
 #include "global.h"
 
-using std::string, std::pair, std::shuffle, std::default_random_engine, std::array, std::pair, ::CustomTypes;
+using std::string, std::pair, std::shuffle, std::default_random_engine, std::array, std::pair;
+
+typedef CT::Card Card;
 
 Deck::Deck() // Sets the Deck constructor
 {
@@ -26,9 +28,9 @@ Deck::Deck() // Sets the Deck constructor
   this->Shuffle();
 }
 
-CT::Card Deck::GETTopMainDeck()
+Card Deck::GETTopMainDeck()
 {
-  pair<string, string> x = MainDeck.top();
+  Card x = MainDeck.top();
   MainDeck.pop();
   return x;
 }
@@ -36,7 +38,7 @@ CT::Card Deck::GETTopMainDeck()
 void Deck::Shuffle() // Sets the Deck's shuffle method
 {
   unsigned seed = 0;
-  CT::Card shufflingDeck[52];         //* Temporary array for shuffling
+  Card shufflingDeck[52];         //* Temporary array for shuffling
   array<int, 52> orderOfShuffledDeck; //* Array holding numbers 0-51 representing each index of shufflingDeck
   int iteratorCounter = 0;
 
