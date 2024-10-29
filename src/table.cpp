@@ -26,11 +26,6 @@ Table::Table(int inMaxPlayers, string inTableName, bool isSave)
   SETplayerCount(1);
 }
 
-void Table::NewHand()
-{
-  this->TableDealer.preHandCheck();
-}
-
 int Table::GETplayerCount()
 {
   return playerCount;
@@ -49,4 +44,15 @@ void Table::SETplayerCount(int pCount)
 void Table::SETmaxPlayers(int max)
 {
   maxPlayers = max;
+}
+
+void Table::NewHand()
+{
+  this->TableDealer.SETplayersToDeal(this->GETplayerCount());
+  this->TableDealer.preHandCheck();
+}
+
+void Table::NewPlayerJoin()
+{
+  
 }

@@ -10,9 +10,11 @@ class Dealer
     Dealer();
     std::string GETButtonPositions();
     void preHandCheck();
-    std::stack<std::pair<std::string, std::string>> DealerDeck;
+    void SETplayersToDeal(int players);
 
   private:
+    int playersToDeal;
+    std::stack<std::pair<std::string, std::string>> DealerDeck;
     int Hand(bool isTime);
     void SETButtonPositions(int dPos, int lbPos, int bbPos);
     int buttonPositions[3];

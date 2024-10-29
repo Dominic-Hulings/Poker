@@ -14,6 +14,7 @@ class Table
     int GETmaxPlayers();
     void SETmaxPlayers(int max);
     void SETplayerCount(int pCount);
+    void NewPlayerJoin();
     void NewHand();
 
   private:

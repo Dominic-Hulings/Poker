@@ -17,6 +17,11 @@ Dealer::Dealer()
   this->SETButtonPositions(1, 2, 3);
 }
 
+void Dealer::SETplayersToDeal(int players)
+{
+  this->playersToDeal = players;
+}
+
 string Dealer::GETButtonPositions()
 {
   string buttons = to_string(buttonPositions[0]) + to_string(buttonPositions[1]) + to_string(buttonPositions[2]);
@@ -36,12 +41,14 @@ void Dealer::preHandCheck()
   this->Hand(true);
 }
 
-int Dealer::Hand(bool isTime)
+int Dealer::Hand(bool isTimeToDeal)
 {
-  if (!isTime)
+  if (!isTimeToDeal)
   {
     return 0;
   }
+
+  
 
   return 1;
 }
