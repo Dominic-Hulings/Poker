@@ -1,15 +1,15 @@
-//#include<iostream>
+#include <iostream>
 
-#include "deck.h"
 #include "dealer.h"
+#include "deck.h"
 
-using std::string, std::to_string;
+using std::string, std::to_string, std::cout;
 
 Dealer::Dealer()
 {
   Deck deck;
 
-  for(int counter = 0; counter < 52; counter++)
+  for (int counter = 0; counter < 52; counter++)
   {
     DealerDeck.push(deck.GETTopMainDeck());
   }
@@ -38,11 +38,10 @@ void Dealer::preHandCheck()
 
 int Dealer::Hand(bool isTime)
 {
-  if(!isTime)
+  if (!isTime)
   {
     return 0;
   }
-
 
   return 1;
 }

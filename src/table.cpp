@@ -1,7 +1,6 @@
 #include <string>
 
 #include "table.h"
-//#include "dealer.h"
 
 using std::string;
 

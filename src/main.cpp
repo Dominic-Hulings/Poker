@@ -1,17 +1,13 @@
-#include <iostream>
 #include <string>
-// #include <stack>
-// #include <gtk/gtk.h>
 
-// #include "deck.h"
-// #include "dealer.h"
 #include "table.h"
 
-using std::string, std::cout;
+using std::string;
 
 int main() //* Where the main function will be, just used for testing as of now
 {
-  
+  Table table(1, "Placeholder Table Name", false);
+  table.NewHand();
 
   return 1;
 }
