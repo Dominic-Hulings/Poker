@@ -51,7 +51,7 @@ int Dealer::Hand(bool isTimeToDeal)
     return 0;
   }
 
-
+  
 
   return 1;
 }
