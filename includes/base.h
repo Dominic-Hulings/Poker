@@ -4,9 +4,11 @@
 #include <stack>
 #include <string>
 
+#include "types.h"
+
 // Just a class for Deck to inherit from containing base data
 
-class BaseCardData
+class BaseCardData : public customTypes
 {
   public:
     const std::string Suits[4] = {"Spades", "Clubs", "Hearts", "Diamonds"};
@@ -14,7 +16,7 @@ class BaseCardData
                                     "Eight", "Nine", "Ten",   "Jack", "Queen", "King"};
 
   protected:
-    std::stack<std::pair<std::string, std::string>> MainDeck;
+    std::stack<typeCards> MainDeck;
 };
 
 #endif

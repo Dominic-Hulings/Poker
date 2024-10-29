@@ -14,7 +14,7 @@ class Dealer
 
   private:
     int playersToDeal;
-    std::stack<std::pair<std::string, std::string>> DealerDeck;
+    std::stack<typeCards> DealerDeck;
     int Hand(bool isTime);
     void SETButtonPositions(int dPos, int lbPos, int bbPos);
     int buttonPositions[3];

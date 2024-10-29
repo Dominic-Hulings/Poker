@@ -9,7 +9,7 @@ class Deck : BaseCardData //* Inherits protected list of suits and a protected l
 {                         //* along with a public stack of string pairs called MainDeck
   public:
     Deck();
-    std::pair<std::string, std::string> GETTopMainDeck();
+    typeCards GETTopMainDeck();
 
   protected:
     void Shuffle(); //* Constructor and Shuffle defined in deck.cpp

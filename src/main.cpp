@@ -6,8 +6,7 @@ using std::string;
 
 int main() //* Where the main function will be, just used for testing as of now
 {
-  Table table(1, "Placeholder Table Name", false);
-  table.NewHand();
+  
 
   return 1;
 }
