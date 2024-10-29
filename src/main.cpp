@@ -1,6 +1,6 @@
 #include <string>
 
-#include "table.h"
+//#include "global.h"
 
 using std::string;
 

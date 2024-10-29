@@ -1,9 +1,9 @@
-#include <iostream>
+//#include <iostream>
 
 #include "dealer.h"
 #include "deck.h"
 
-using std::string, std::to_string, std::cout;
+using std::string, std::to_string;
 
 Dealer::Dealer()
 {
@@ -48,7 +48,7 @@ int Dealer::Hand(bool isTimeToDeal)
     return 0;
   }
 
-  
+
 
   return 1;
 }

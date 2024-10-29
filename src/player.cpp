@@ -1,9 +1,9 @@
 #include <string>
-#include <iostream>
+//#include <iostream>
 
 #include "player.h"
 
-using std::string, std::cin;
+using std::string;
 
 Player::Player(string inUserName)
 {

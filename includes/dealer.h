@@ -4,7 +4,9 @@
 #include <stack>
 #include <string>
 
-class Dealer
+#include "global.h"
+
+class Dealer : CustomTypes
 {
   public:
     Dealer();
@@ -14,7 +16,7 @@ class Dealer
 
   private:
     int playersToDeal;
-    std::stack<typeCards> DealerDeck;
+    std::stack<Card> DealerDeck;
     int Hand(bool isTime);
     void SETButtonPositions(int dPos, int lbPos, int bbPos);
     int buttonPositions[3];
