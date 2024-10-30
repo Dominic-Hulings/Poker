@@ -10,27 +10,20 @@ using std::string, std::cout;
 int main() //* Where the main function will be, just used for testing as of now
 {
   Player Dominic("User-Dominic");
+  Player Guest("User-Guest");
+  Player Guest1("User-Guest1");
   Table NewTable(5, "placeholder_name", false);
   NewTable.NewPlayerJoin(Dominic.GETpSelfPointer());
+  NewTable.NewPlayerJoin(Guest.GETpSelfPointer());
+  NewTable.NewPlayerJoin(Guest1.GETpSelfPointer());
 
-  Player* x = NewTable.playerIDsVec.front();
-  Player y = *x;
+  for(Player* player : NewTable.playerIDsVec)
+  {
+    Player PlayerObj = *player;
+    cout << PlayerObj.GETuserName() << " " << PlayerObj.GETplayerID() << "\n";
+  }
 
-  cout << y.GETuserName() << " " << y.GETplayerID() << "\n";
-  cout << Dominic.GETuserName() << "\n";
-  cout << Dominic.GETplayerID();
+
 
   return 1;
 }
-
-/*
-
-Deck deck; // Create new object from deck.cpp using deck.h
-
-  while(!deck.MainDeck.empty()) // Just to display if the cards are shuffled (Testing purposes)
-  {
-    cout << deck.MainDeck.top().first << deck.MainDeck.top().second << "\n";
-    deck.MainDeck.pop();
-  }
-
-*/

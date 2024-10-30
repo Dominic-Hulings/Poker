@@ -78,7 +78,7 @@ int Table::NewPlayerJoin(Player* pPlayer)
   }
 
   pPlayer->SETplayerID(playerID);
-  playerIDsVec.push_back(pPlayer);
+  playerIDsVec.push_back(pPlayer->GETpSelfPointer());
 
   return 1;
 }
