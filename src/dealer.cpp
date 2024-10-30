@@ -1,11 +1,12 @@
 //#include <iostream>
 //#include <vector>
+#include <array>
 
 #include "dealer.h"
 #include "deck.h"
 #include "global.h"
 
-using std::string, std::to_string;
+using std::string;
 
 typedef CT::Card Card;
 
@@ -18,7 +19,7 @@ Dealer::Dealer()
     DealerDeck.push(deck.GETTopMainDeck());
   }
 
-  this->SETButtonPositions(1, 2, 3);
+  this->SETButtonPositions(2);
 }
 
 void Dealer::SETplayersToDeal(int players)
@@ -26,17 +27,15 @@ void Dealer::SETplayersToDeal(int players)
   this->playersToDeal = players;
 }
 
-string Dealer::GETButtonPositions()
+int Dealer::GETButtonPositions()
 {
-  string buttons = to_string(buttonPositions[0]) + to_string(buttonPositions[1]) + to_string(buttonPositions[2]);
+  int buttons = buttonPosition;
   return buttons;
 }
 
-void Dealer::SETButtonPositions(int dPos, int lbPos, int bbPos)
+void Dealer::SETButtonPositions(int buttonPos)
 {
-  this->buttonPositions[0] = dPos;
-  this->buttonPositions[1] = lbPos;
-  this->buttonPositions[2] = bbPos;
+  this->buttonPosition = buttonPos;
 }
 
 void Dealer::preHandCheck()
@@ -51,6 +50,16 @@ int Dealer::Hand(bool isTimeToDeal)
   {
     return 0;
   }
+
+  int counter = 0;
+
+  for(int players = playersToDeal; players; players--)
+  {
+    
+  }
+
+
+  
 
   return 1;
 }

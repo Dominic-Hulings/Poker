@@ -41,9 +41,17 @@ int Table::GETmaxPlayers()
   return maxPlayers;
 }
 
-void Table::SETplayerCount(int pCount)
+void Table::SETplayerCount(int pCount = 1743)
 {
-  playerCount = pCount;
+  if(int pCount = 1743)
+  {
+    playerCount++;
+  }
+
+  else
+  {
+    playerCount = pCount;
+  }
 }
 
 void Table::SETmaxPlayers(int max)
@@ -79,6 +87,7 @@ int Table::NewPlayerJoin(Player* pPlayer)
 
   pPlayer->SETplayerID(playerID);
   playerIDsVec.push_back(pPlayer->GETpSelfPointer());
+  this->SETplayerCount();
 
   return 1;
 }

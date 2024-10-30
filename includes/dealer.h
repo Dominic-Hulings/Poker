@@ -10,7 +10,7 @@ class Dealer : CT
 {
   public:
     Dealer();
-    std::string GETButtonPositions();
+    int GETButtonPositions();
     void preHandCheck();
     void SETplayersToDeal(int players);
 
@@ -18,8 +18,8 @@ class Dealer : CT
     int playersToDeal;
     std::stack<Card> DealerDeck;
     int Hand(bool isTime);
-    void SETButtonPositions(int dPos, int lbPos, int bbPos);
-    int buttonPositions[3];
+    void SETButtonPositions(int buttonPos);
+    int buttonPosition;
 };
 
 #endif
