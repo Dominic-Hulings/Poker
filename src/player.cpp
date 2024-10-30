@@ -11,6 +11,7 @@ typedef CT::Card Card;
 Player::Player(string inUserName)
 {
   this->userName = inUserName;
+  this->pSelfPointer = this;
 }
 
 string Player::GETuserName()
@@ -21,6 +22,11 @@ string Player::GETuserName()
 string Player::GETplayerID()
 {
   return playerID;
+}
+
+Player* Player::GETpSelfPointer()
+{
+  return pSelfPointer;
 }
 
 void Player::SETplayerID(string id)

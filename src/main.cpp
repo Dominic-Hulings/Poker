@@ -10,9 +10,8 @@ using std::string, std::cout;
 int main() //* Where the main function will be, just used for testing as of now
 {
   Player Dominic("User-Dominic");
-  Player* pDominic = &Dominic;
   Table NewTable(5, "placeholder_name", false);
-  NewTable.NewPlayerJoin(pDominic);
+  NewTable.NewPlayerJoin(Dominic.GETpSelfPointer());
 
   std::pair<string, string> x = NewTable.playerIDsVec.front();
 
