@@ -57,7 +57,7 @@ void Table::NewHand()
   this->TableDealer.preHandCheck();
 }
 
-int Table::NewPlayerJoin(Player player)
+int Table::NewPlayerJoin(Player* pPlayer)
 {
   if(!(maxPlayers >= playerCount))
   {
@@ -77,8 +77,8 @@ int Table::NewPlayerJoin(Player player)
     playerID += to_string(charList[dist62(rng)]);
   }
 
-  playerIDsVec.push_back({playerID, player.GETuserName()});
-  player.SETplayerID(playerID);
+  playerIDsVec.push_back({playerID, pPlayer->GETuserName()});
+  pPlayer->SETplayerID(playerID);
 
   return 1;
 }
