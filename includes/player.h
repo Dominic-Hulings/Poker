@@ -2,8 +2,9 @@
 #define PLAYER_H
 
 #include <string>
+#include "global.h"
 
-class Player
+class Player : CT
 {
   public:
     Player(std::string inUserName);
@@ -11,7 +12,9 @@ class Player
     std::string GETplayerID();
     Player* GETpSelfPointer();
     void SETplayerID(std::string id);
+    void SETplayerHand(Card givenCard);
   private:
+    std::pair<Card, Card> playerHand;
     Player* pSelfPointer;
     std::string userName;
     std::string playerID;

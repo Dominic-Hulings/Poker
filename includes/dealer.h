@@ -12,7 +12,7 @@ class Dealer : CT
 {
   public:
     Dealer();
-    int GETButtonPositions();
+    int GETButtonPosition();
     void preHandCheck(std::vector<Player*>* p2pPlayerIDsVec);
     void SETplayersToDeal(int players);
 
@@ -21,7 +21,7 @@ class Dealer : CT
     int buttonPosition;
     std::stack<Card> DealerDeck;
     int Hand(bool isTime, std::vector<Player*>* p2pPlayerIDsVec);
-    void SETButtonPositions(int buttonPos);
+    void SETButtonPosition(int buttonPos);
 };
 
 #endif

@@ -20,7 +20,7 @@ Dealer::Dealer()
     DealerDeck.push(deck.GETTopMainDeck());
   }
 
-  this->SETButtonPositions(2);
+  this->SETButtonPosition(0);
 }
 
 void Dealer::SETplayersToDeal(int players)
@@ -28,13 +28,12 @@ void Dealer::SETplayersToDeal(int players)
   this->playersToDeal = players;
 }
 
-int Dealer::GETButtonPositions()
+int Dealer::GETButtonPosition()
 {
-  int buttons = buttonPosition;
-  return buttons;
+  return buttonPosition;
 }
 
-void Dealer::SETButtonPositions(int buttonPos)
+void Dealer::SETButtonPosition(int buttonPos)
 {
   this->buttonPosition = buttonPos;
 }
@@ -52,20 +51,25 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
     return 0;
   }
 
-  vector<Player*> turnOrder;
+  vector<Player*> playersVec;
   int counter = 0;
 
   for(int players = playersToDeal - 1; players; players--)
   {
-    turnOrder.push_back(p2pPlayerIDsVec->at(counter));
+    playersVec.push_back(p2pPlayerIDsVec->at(counter));
     counter++;
   }
 
-  for(Player* player : turnOrder)
+  int playerToDeal = buttonPosition - 1;
+  
+  
+  
+  return 1;
+}
+
+/*
+for(Player* player : turnOrder)
   {
     cout << player->GETuserName() << " " << player->GETplayerID() << "\n";
   }
-  
-
-  return 1;
-}
+*/
