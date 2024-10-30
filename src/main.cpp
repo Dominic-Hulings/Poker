@@ -17,7 +17,7 @@ int main() //* Where the main function will be, just used for testing as of now
   NewTable.NewPlayerJoin(Guest.GETpSelfPointer());
   NewTable.NewPlayerJoin(Guest1.GETpSelfPointer());
 
-  for(Player* player : NewTable.playerIDsVec)
+  for(Player* player : NewTable.pPlayerIDsVec)
   {
     Player PlayerObj = *player;
     cout << PlayerObj.GETuserName() << " " << PlayerObj.GETplayerID() << "\n";

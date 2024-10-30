@@ -2,6 +2,7 @@
 #include <iostream>
 #include <random>
 #include <ctime>
+#include <vector>
 
 #include "table.h"
 #include "player.h"
@@ -28,6 +29,7 @@ Table::Table(int inMaxPlayers, string inTableName, bool isSave)
 {
   maxPlayers = inMaxPlayers;
   tableName = inTableName;
+  p2pPlayerIDsVec = &pPlayerIDsVec;
   SETplayerCount(1);
 }
 
@@ -62,7 +64,7 @@ void Table::SETmaxPlayers(int max)
 void Table::NewHand()
 {
   this->TableDealer.SETplayersToDeal(this->GETplayerCount());
-  this->TableDealer.preHandCheck();
+  this->TableDealer.preHandCheck(p2pPlayerIDsVec);
 }
 
 int Table::NewPlayerJoin(Player* pPlayer)
@@ -86,7 +88,7 @@ int Table::NewPlayerJoin(Player* pPlayer)
   }
 
   pPlayer->SETplayerID(playerID);
-  playerIDsVec.push_back(pPlayer->GETpSelfPointer());
+  pPlayerIDsVec.push_back(pPlayer->GETpSelfPointer());
   this->SETplayerCount();
 
   return 1;
