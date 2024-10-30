@@ -60,9 +60,44 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
     counter++;
   }
 
-  int playerToDeal = buttonPosition - 1;
+  playersVec.at(playerToDeal)->GIVEplayerCard(DealerDeck.top());
+  playerToDeal--;
+  DealerDeck.pop();
   
+  for(int playerToDeal; !(playerToDeal == playerFirstDealt); playerToDeal--)
+  {
+    if(buttonPosition == -1)
+    {
+      buttonPosition = playersToDeal - 1;
+    }
+
+    playersVec.at(playerToDeal)->GIVEplayerCard(DealerDeck.top());
+    playerToDeal--;
+    DealerDeck.pop();
+  }
+
+  playersVec.at(playerToDeal)->GIVEplayerCard(DealerDeck.top());
+  playerToDeal--;
+  DealerDeck.pop();
   
+  for(int playerToDeal; !(playerToDeal == playerFirstDealt); playerToDeal--)
+  {
+    if(buttonPosition == -1)
+    {
+      buttonPosition = playersToDeal - 1;
+    }
+    
+    playersVec.at(playerToDeal)->GIVEplayerCard(DealerDeck.top());
+    playerToDeal--;
+    DealerDeck.pop();
+  }
+
+  for(Player* player : playersVec)
+  {
+    cout << player->GETuserName() << " " << player->GETplayerID() << "\n";
+    cout << player->playerHand.first.first << player->playerHand.first.second << "\n";
+    cout << player->playerHand.second.first << player->playerHand.second.second << "\n";
+  }
   
   return 1;
 }

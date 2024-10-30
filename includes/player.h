@@ -12,9 +12,10 @@ class Player : CT
     std::string GETplayerID();
     Player* GETpSelfPointer();
     void SETplayerID(std::string id);
-    void SETplayerHand(Card givenCard);
-  private:
+    void GIVEplayerCard(Card givenCard);
     std::pair<Card, Card> playerHand;
+  private:
+    //std::pair<Card, Card> playerHand;
     Player* pSelfPointer;
     std::string userName;
     std::string playerID;

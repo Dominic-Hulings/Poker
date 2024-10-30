@@ -31,9 +31,17 @@ Player* Player::GETpSelfPointer()
   return pSelfPointer;
 }
 
-void Player::SETplayerHand(Card givenCard)
+void Player::GIVEplayerCard(Card givenCard)
 {
+  if(playerHand.first.first == "clear")
+  {
+    playerHand.first = givenCard;
+  }
 
+  else
+  {
+    playerHand.second = givenCard;
+  }
 }
 
 void Player::SETplayerID(string id)
