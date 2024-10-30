@@ -13,9 +13,10 @@ int main() //* Where the main function will be, just used for testing as of now
   Table NewTable(5, "placeholder_name", false);
   NewTable.NewPlayerJoin(Dominic.GETpSelfPointer());
 
-  std::pair<string, string> x = NewTable.playerIDsVec.front();
+  Player* x = NewTable.playerIDsVec.front();
+  Player y = *x;
 
-  cout << x.first << ", " << x.second << "\n";
+  cout << y.GETuserName() << " " << y.GETplayerID() << "\n";
   cout << Dominic.GETuserName() << "\n";
   cout << Dominic.GETplayerID();
 

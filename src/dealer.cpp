@@ -1,4 +1,5 @@
 //#include <iostream>
+//#include <vector>
 
 #include "dealer.h"
 #include "deck.h"
@@ -50,8 +51,6 @@ int Dealer::Hand(bool isTimeToDeal)
   {
     return 0;
   }
-
-  
 
   return 1;
 }

@@ -18,8 +18,7 @@ class Table
     void SETplayerCount(int pCount);
     int NewPlayerJoin(Player* pPlayer);
     void NewHand();
-    std::vector<std::pair<std::string, std::string>> playerIDsVec; //* Stores as {playerID, userName}
-
+    std::vector<Player*> playerIDsVec; //* Stores as {playerID, userName}
   private:
     int playerCount;
     int maxPlayers;

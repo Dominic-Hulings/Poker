@@ -77,8 +77,8 @@ int Table::NewPlayerJoin(Player* pPlayer)
     playerID += to_string(charList[dist62(rng)]);
   }
 
-  playerIDsVec.push_back({playerID, pPlayer->GETuserName()});
   pPlayer->SETplayerID(playerID);
+  playerIDsVec.push_back(pPlayer);
 
   return 1;
 }
