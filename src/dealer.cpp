@@ -1,4 +1,4 @@
-//#include <iostream>
+#include <iostream>
 #include <vector>
 //#include <array>
 
@@ -7,7 +7,7 @@
 #include "player.h"
 #include "global.h"
 
-using std::string, std::vector;
+using std::string, std::vector, std::cout;
 
 typedef CT::Card Card;
 
@@ -55,12 +55,16 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
   vector<Player*> turnOrder;
   int counter = 0;
 
-  for(int players = playersToDeal; players; players--)
+  for(int players = playersToDeal - 1; players; players--)
   {
-    
+    turnOrder.push_back(p2pPlayerIDsVec->at(counter));
+    counter++;
   }
 
-
+  for(Player* player : turnOrder)
+  {
+    cout << player->GETuserName() << " " << player->GETplayerID() << "\n";
+  }
   
 
   return 1;

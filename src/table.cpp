@@ -43,17 +43,9 @@ int Table::GETmaxPlayers()
   return maxPlayers;
 }
 
-void Table::SETplayerCount(int pCount = 1743)
+void Table::SETplayerCount(int pCount)
 {
-  if(int pCount = 1743)
-  {
-    playerCount++;
-  }
-
-  else
-  {
-    playerCount = pCount;
-  }
+  playerCount = pCount;
 }
 
 void Table::SETmaxPlayers(int max)
@@ -66,6 +58,9 @@ void Table::NewHand()
   this->TableDealer.SETplayersToDeal(this->GETplayerCount());
   this->TableDealer.preHandCheck(p2pPlayerIDsVec);
 }
+
+
+//*******************/
 
 int Table::NewPlayerJoin(Player* pPlayer)
 {
@@ -89,7 +84,7 @@ int Table::NewPlayerJoin(Player* pPlayer)
 
   pPlayer->SETplayerID(playerID);
   pPlayerIDsVec.push_back(pPlayer->GETpSelfPointer());
-  this->SETplayerCount();
+  this->SETplayerCount(this->GETplayerCount() + 1);
 
   return 1;
 }
