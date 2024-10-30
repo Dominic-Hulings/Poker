@@ -8,7 +8,7 @@
 #include "player.h"
 //#include "global.h"
 
-using std::string, std::cout, std::to_string;
+using std::string, std::cout;
 
 /*
 private class Table::TableDealer
@@ -79,7 +79,7 @@ int Table::NewPlayerJoin(Player* pPlayer)
 
   for (int counter = 0; counter < 20; counter++)  
   {
-    playerID += to_string(charList[dist62(rng)]);
+    playerID += charList[dist62(rng)];
   }
 
   pPlayer->SETplayerID(playerID);

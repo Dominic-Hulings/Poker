@@ -83,6 +83,9 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
     playerBeingDealt = CheckIfNeg(playerBeingDealt--, playersToDeal--);
   }
   while(playersVec.at(buttonPosition)->GETplayerHand().second.second == "clear");
+
+  cout << "It's " << playersVec.at(buttonPosition--)->GETuserName() << "'s turn\n\n";
+  
   
   return 1;
 }
