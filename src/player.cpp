@@ -31,6 +31,11 @@ Player* Player::GETpSelfPointer()
   return pSelfPointer;
 }
 
+pair<Card, Card> Player::GETplayerHand()
+{
+  return this->playerHand;
+}
+
 void Player::GIVEplayerCard(Card givenCard)
 {
   if(playerHand.first.first == "clear")

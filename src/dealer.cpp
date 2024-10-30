@@ -20,12 +20,17 @@ Dealer::Dealer()
     DealerDeck.push(deck.GETTopMainDeck());
   }
 
-  this->SETButtonPosition(0);
+  this->SETbuttonPosition(0);
 }
 
-void Dealer::SETplayersToDeal(int players)
+int Dealer::CheckIfNeg(int num, int replaceNumIfNeg)
 {
-  this->playersToDeal = players;
+  if(num < 0)
+  {
+    return replaceNumIfNeg;
+  }
+
+  return num;
 }
 
 int Dealer::GETButtonPosition()
@@ -33,9 +38,14 @@ int Dealer::GETButtonPosition()
   return buttonPosition;
 }
 
-void Dealer::SETButtonPosition(int buttonPos)
+void Dealer::SETplayersToDeal(int players)
 {
-  this->buttonPosition = buttonPos;
+  this->playersToDeal = players;
+}
+
+void Dealer::SETbuttonPosition(int inButtonPos)
+{
+  buttonPosition = CheckIfNeg(inButtonPos, playersToDeal--);
 }
 
 void Dealer::preHandCheck(std::vector<Player*>* p2pPlayerIDsVec)
@@ -43,6 +53,10 @@ void Dealer::preHandCheck(std::vector<Player*>* p2pPlayerIDsVec)
   // TODO: Check if its time to start a new hand and return true or false and pass it to Hand function
   this->Hand(true, p2pPlayerIDsVec);
 }
+
+
+
+
 
 int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
 {
@@ -54,57 +68,21 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
   vector<Player*> playersVec;
   int counter = 0;
 
-  for(int players = playersToDeal - 1; players; players--)
+  for(int players = playersToDeal--; players; players--)
   {
     playersVec.push_back(p2pPlayerIDsVec->at(counter));
     counter++;
   }
 
-  playersVec.at(playerToDeal)->GIVEplayerCard(DealerDeck.top());
-  playerToDeal--;
-  DealerDeck.pop();
+  int playerBeingDealt = CheckIfNeg(buttonPosition--, playersToDeal--);
   
-  for(int playerToDeal; !(playerToDeal == playerFirstDealt); playerToDeal--)
+  do
   {
-    if(buttonPosition == -1)
-    {
-      buttonPosition = playersToDeal - 1;
-    }
-
-    playersVec.at(playerToDeal)->GIVEplayerCard(DealerDeck.top());
-    playerToDeal--;
+    playersVec.at(playerBeingDealt)->GIVEplayerCard(DealerDeck.top());
     DealerDeck.pop();
+    playerBeingDealt = CheckIfNeg(playerBeingDealt--, playersToDeal--);
   }
-
-  playersVec.at(playerToDeal)->GIVEplayerCard(DealerDeck.top());
-  playerToDeal--;
-  DealerDeck.pop();
-  
-  for(int playerToDeal; !(playerToDeal == playerFirstDealt); playerToDeal--)
-  {
-    if(buttonPosition == -1)
-    {
-      buttonPosition = playersToDeal - 1;
-    }
-    
-    playersVec.at(playerToDeal)->GIVEplayerCard(DealerDeck.top());
-    playerToDeal--;
-    DealerDeck.pop();
-  }
-
-  for(Player* player : playersVec)
-  {
-    cout << player->GETuserName() << " " << player->GETplayerID() << "\n";
-    cout << player->playerHand.first.first << player->playerHand.first.second << "\n";
-    cout << player->playerHand.second.first << player->playerHand.second.second << "\n";
-  }
+  while(playersVec.at(buttonPosition)->GETplayerHand().second.second == "clear");
   
   return 1;
 }
-
-/*
-for(Player* player : turnOrder)
-  {
-    cout << player->GETuserName() << " " << player->GETplayerID() << "\n";
-  }
-*/
