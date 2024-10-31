@@ -30,7 +30,7 @@ Table::Table(int inMaxPlayers, string inTableName, bool isSave)
   maxPlayers = inMaxPlayers;
   tableName = inTableName;
   p2pPlayerIDsVec = &pPlayerIDsVec;
-  SETplayerCount(1);
+  SETplayerCount(0);
 }
 
 int Table::GETplayerCount()
@@ -55,7 +55,7 @@ void Table::SETmaxPlayers(int max)
 
 void Table::NewHand()
 {
-  this->TableDealer.SETplayersToDeal(this->GETplayerCount());
+  this->TableDealer.SETplayersToDeal(this->GETplayerCount() - 1);
   this->TableDealer.preHandCheck(p2pPlayerIDsVec);
 }
 

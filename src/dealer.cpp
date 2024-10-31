@@ -30,7 +30,10 @@ int Dealer::CheckIfNeg(int num, int replaceNumIfNeg)
     return replaceNumIfNeg;
   }
 
-  return num;
+  else
+  {
+    return num;
+  }
 }
 
 int Dealer::GETButtonPosition()
@@ -45,7 +48,7 @@ void Dealer::SETplayersToDeal(int players)
 
 void Dealer::SETbuttonPosition(int inButtonPos)
 {
-  buttonPosition = CheckIfNeg(inButtonPos, playersToDeal--);
+  buttonPosition = CheckIfNeg(inButtonPos, playersToDeal);
 }
 
 void Dealer::preHandCheck(std::vector<Player*>* p2pPlayerIDsVec)
@@ -68,24 +71,23 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
   vector<Player*> playersVec;
   int counter = 0;
 
-  for(int players = playersToDeal--; players; players--)
+  for(int players = playersToDeal + 1; players; players--)
   {
     playersVec.push_back(p2pPlayerIDsVec->at(counter));
     counter++;
   }
 
-  int playerBeingDealt = CheckIfNeg(buttonPosition--, playersToDeal--);
-  
+  int playerBeingDealt = CheckIfNeg(buttonPosition - 1, playersToDeal);
+
   do
   {
     playersVec.at(playerBeingDealt)->GIVEplayerCard(DealerDeck.top());
     DealerDeck.pop();
-    playerBeingDealt = CheckIfNeg(playerBeingDealt--, playersToDeal--);
+    playerBeingDealt = CheckIfNeg(playerBeingDealt - 1, playersToDeal);
   }
   while(playersVec.at(buttonPosition)->GETplayerHand().second.second == "clear");
 
-  cout << "It's " << playersVec.at(buttonPosition--)->GETuserName() << "'s turn\n\n";
-  
-  
+  cout << "It's " << playersVec.at(CheckIfNeg(buttonPosition - 1, playersToDeal))->GETuserName() << "'s turn\n\n";
+
   return 1;
 }
