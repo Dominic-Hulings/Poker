@@ -15,6 +15,7 @@ Player::Player(string inUserName)
   this->playerHand.first = {"clear", "clear"};
   this->playerHand.second = {"clear", "clear"};
   this->playerStack = 500;
+  this->blind = 0;
 }
 
 string Player::GETuserName()
@@ -55,7 +56,7 @@ void Player::GIVEplayerCard(Card givenCard)
   }
 }
 
-int Player::blindInput(int amount, int blind  = 0)
+int Player::blindInput(int amount, int blind)
 {
   this->playerStack -= amount;
   this->blind = blind;

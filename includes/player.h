@@ -17,6 +17,7 @@ class Player : CT
     void GIVEplayerCard(Card givenCard);
     int blindInput(int amount, int blind);
     int blind;
+    bool turnOver;
   private:
     std::pair<Card, Card> playerHand;
     int playerStack;

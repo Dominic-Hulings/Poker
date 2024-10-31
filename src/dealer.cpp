@@ -91,6 +91,7 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
   do
   {
     playersVec.at(playerBeingDealt)->GIVEplayerCard(DealerDeck.top());
+    playersVec.at(playerBeingDealt)->turnOver = false;
     DealerDeck.pop();
     playerBeingDealt = CheckIfNeg(playerBeingDealt - 1, playersToDeal);
   }
@@ -113,17 +114,30 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
   while(!endBetting)
   {
     cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
-    cout << "Type check to check and bet to bet: ";
+    cout << "Type check, bet (raise), or fold: ";
     cin >> x;
 
     if(x == "check")
     {
       cout << "check\n";
+      playersVec.at(toAct)->turnOver = true;
     }
 
     else if(x == "bet")
     {
-      cout << "bet\n";
+      cout << "bet";
+      for(Player* player : playersVec)
+      {
+        player->turnOver = false;
+      }
+      playersVec.at(toAct)->turnOver = true;
+    }
+
+    else if(x == "fold")
+    {
+      cout << "fold";
+      playersVec.erase(playersVec.begin() + toAct);
+      playersToDeal--;
     }
 
     else
