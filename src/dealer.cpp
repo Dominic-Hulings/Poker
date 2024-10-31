@@ -68,7 +68,7 @@ void Dealer::preHandCheck(std::vector<Player*>* p2pPlayerIDsVec)
   this->Hand(true, p2pPlayerIDsVec);
 }
 
-int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
+Player* Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
 {
   //* DEAL CARDS TO PLAYERS {
   if (!isTimeToDeal)
@@ -108,48 +108,102 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
 
   //* PLAY HAND {
 
-  bool endBetting = false;
+  bool wasBet = false;
   string x;
+  int toCall;
+  int amt = 0;
 
-  while(!endBetting)
+  while(true)
   {
-    cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
-    cout << "Type check, bet (raise), or fold: ";
-    cin >> x;
-
-    if(x == "check")
+    if(playersVec.at(toAct)->turnOver == true)
     {
-      cout << "check\n";
-      playersVec.at(toAct)->turnOver = true;
+      break;
     }
 
-    else if(x == "bet")
+
+    if(!wasBet)
     {
-      cout << "bet";
-      for(Player* player : playersVec)
+      cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
+      cout << "Type check, bet, or fold: ";
+      cin >> x;
+
+      if(x == "check")
       {
-        player->turnOver = false;
+        cout << "check\n";
+        playersVec.at(toAct)->turnOver = true;
       }
-      playersVec.at(toAct)->turnOver = true;
-    }
 
-    else if(x == "fold")
-    {
-      cout << "fold";
-      playersVec.erase(playersVec.begin() + toAct);
-      playersToDeal--;
+      else if(x == "bet")
+      {
+        cout << "How much: ";
+        cin >> amt;
+        for(Player* player : playersVec)
+        {
+          player->turnOver = false;
+        }
+        playersVec.at(toAct)->turnOver = true;
+        toCall = amt;
+      }
+
+      else if(x == "fold")
+      {
+        cout << "fold";
+        playersVec.erase(playersVec.begin() + toAct);
+        playersToDeal--;
+        if(playersToDeal == 0)
+        {
+          return playersVec.at(toAct);
+        }
+      }
+
+      else
+      {
+        cout << "input not recognized\n";
+        playersVec.at(toAct)->turnOver = true;
+      }
     }
 
     else
     {
-      cout << "input not recognized\n";
+      cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
+      cout << "Type call, raise, or fold: ";
+      cin >> x;
+
+      if(x == "call")
+      {
+        cout << "call";
+      }
+
+      else if(x == "raise")
+      {
+        cout << "raise";
+      }
+
+      else if(x == "fold")
+      {
+        cout << "fold";
+        playersVec.erase(playersVec.begin() + toAct);
+        playersToDeal--;
+        if(playersToDeal == 0)
+        {
+          return playersVec.at(toAct);
+        }
+      }
+
+      else
+      {
+        cout << "input not recognized\n";
+        playersVec.at(toAct)->turnOver = true;
+      }
     }
 
     toAct = CheckIfNeg(toAct - 1, playersToDeal);
   }
 
+
+
   //* PLAY HAND }
   
 
-  return 1;
+  return playersVec.at(toAct);
 }

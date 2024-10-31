@@ -24,7 +24,7 @@ class Dealer : CT
     int littleBlind;
     int bigBlind;
     std::stack<Card> DealerDeck;
-    int Hand(bool isTime, std::vector<Player*>* p2pPlayerIDsVec);
+    Player* Hand(bool isTime, std::vector<Player*>* p2pPlayerIDsVec);
     void SETbuttonPosition(int buttonPos);
     int CheckIfNeg(int num, int replaceNumIfNeg);
 };
