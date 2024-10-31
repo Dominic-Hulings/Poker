@@ -74,7 +74,7 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
     counter++;
   }
 
-  int playerBeingDealt, toAct = CheckIfNeg(buttonPosition - 1, playersToDeal);
+  int playerBeingDealt = CheckIfNeg(buttonPosition - 1, playersToDeal);
 
   do
   {
