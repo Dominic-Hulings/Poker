@@ -17,16 +17,18 @@ class Dealer : CT
     void preHandCheck(std::vector<Player*>* p2pPlayerIDsVec);
     void SETplayersToDeal(int players);
     void SETblinds(std::pair<int, int> blinds);
-
-  private:
+  protected:
     int playersToDeal;
     int buttonPosition;
     int littleBlind;
     int bigBlind;
+    int toAct;
+    std::vector<Player*> playersVec;
+    int CheckIfNeg(int num, int replaceNumIfNeg);
+  private:
     std::stack<Card> DealerDeck;
     Player* Hand(bool isTime, std::vector<Player*>* p2pPlayerIDsVec);
     void SETbuttonPosition(int buttonPos);
-    int CheckIfNeg(int num, int replaceNumIfNeg);
 };
 
 #endif
