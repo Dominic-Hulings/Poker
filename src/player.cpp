@@ -14,6 +14,7 @@ Player::Player(string inUserName)
   this->pSelfPointer = this;
   this->playerHand.first = {"clear", "clear"};
   this->playerHand.second = {"clear", "clear"};
+  this->playerStack = 500;
 }
 
 string Player::GETuserName()
@@ -33,7 +34,12 @@ Player* Player::GETpSelfPointer()
 
 pair<Card, Card> Player::GETplayerHand()
 {
-  return this->playerHand;
+  return playerHand;
+}
+
+int Player::GETplayerStack()
+{
+  return playerStack;
 }
 
 void Player::GIVEplayerCard(Card givenCard)

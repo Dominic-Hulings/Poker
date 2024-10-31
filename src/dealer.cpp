@@ -57,12 +57,9 @@ void Dealer::preHandCheck(std::vector<Player*>* p2pPlayerIDsVec)
   this->Hand(true, p2pPlayerIDsVec);
 }
 
-
-
-
-
 int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
 {
+  //* DEAL CARDS TO PLAYERS {
   if (!isTimeToDeal)
   {
     return 0;
@@ -77,7 +74,7 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
     counter++;
   }
 
-  int playerBeingDealt = CheckIfNeg(buttonPosition - 1, playersToDeal);
+  int playerBeingDealt, toAct = CheckIfNeg(buttonPosition - 1, playersToDeal);
 
   do
   {
@@ -86,8 +83,16 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
     playerBeingDealt = CheckIfNeg(playerBeingDealt - 1, playersToDeal);
   }
   while(playersVec.at(buttonPosition)->GETplayerHand().second.second == "clear");
+  //* DEAL CARDS TO PLAYERS }
 
-  cout << "It's " << playersVec.at(CheckIfNeg(buttonPosition - 1, playersToDeal))->GETuserName() << "'s turn\n\n";
+
+
+  //* PLAY HAND {
+
+  
+
+  //* PLAY HAND }
+  
 
   return 1;
 }
