@@ -7,7 +7,7 @@
 #include "player.h"
 #include "global.h"
 
-using std::string, std::vector, std::cout;
+using std::string, std::vector, std::cout, std::cin;
 
 typedef CT::Card Card;
 
@@ -75,6 +75,7 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
   }
 
   int playerBeingDealt = CheckIfNeg(buttonPosition - 1, playersToDeal);
+  int toAct = CheckIfNeg(buttonPosition - 1, playersToDeal);
 
   do
   {
@@ -89,7 +90,31 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
 
   //* PLAY HAND {
 
-  
+  bool endBetting = false;
+  string x;
+
+  while(!endBetting)
+  {
+    cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
+    cout << "Type check to check and bet to bet: ";
+    cin >> x;
+
+    if(x == "check")
+    {
+      cout << "check\n";
+    }
+
+    else if(x == "bet")
+    {
+      cout << "bet\n";
+    }
+
+    else
+    {
+      cout << "input not recognized\n";
+    }
+    toAct = CheckIfNeg(toAct - 1, playersToDeal);
+  }
 
   //* PLAY HAND }
   

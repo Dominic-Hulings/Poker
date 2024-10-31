@@ -37,7 +37,7 @@ Card Deck::GETTopMainDeck()
 
 void Deck::Shuffle() // Sets the Deck's shuffle method
 {
-  unsigned seed = 0;
+  unsigned seed = time(0);
   Card shufflingDeck[52];         //* Temporary array for shuffling
   array<int, 52> orderOfShuffledDeck; //* Array holding numbers 0-51 representing each index of shufflingDeck
   int iteratorCounter = 0;
@@ -45,7 +45,7 @@ void Deck::Shuffle() // Sets the Deck's shuffle method
   while (!this->MainDeck.empty()) // Until the stack is empty
   {
     shufflingDeck[iteratorCounter] =
-        this->MainDeck.top(); // Read the top card and put it in the next availible spot in shufflingDeck
+    this->MainDeck.top();     // Read the top card and put it in the next availible spot in shufflingDeck
     this->MainDeck.pop();     // Remove the card from the stack
     orderOfShuffledDeck[iteratorCounter] = iteratorCounter; // Add the next number to the orderOfShuffledDeck array
     iteratorCounter++;

@@ -25,17 +25,7 @@ int main() //* Where the main function will be, just used for testing as of now
 
   NewTable.NewHand();
 
-  for(Player* player : NewTable.pPlayerIDsVec)
-  {
-    Player PlayerObj = *player;
-    cout << PlayerObj.GETuserName() << " " << PlayerObj.GETplayerID() << "\n";
-    cout << PlayerObj.GETplayerHand().first.first;
-    cout << " of ";
-    cout << PlayerObj.GETplayerHand().first.second << "\n";
-    cout << PlayerObj.GETplayerHand().second.first;
-    cout << " of ";
-    cout << PlayerObj.GETplayerHand().second.second << "\n";
-  }
+  
 
 
 
