@@ -30,7 +30,13 @@ Table::Table(int inMaxPlayers, string inTableName, bool isSave)
   maxPlayers = inMaxPlayers;
   tableName = inTableName;
   p2pPlayerIDsVec = &pPlayerIDsVec;
+  blinds = {100, 200};
   SETplayerCount(0);
+}
+
+void Table::SETdBlinds(std::pair<int, int> blinds)
+{
+  this->TableDealer.SETblinds(blinds);
 }
 
 int Table::GETplayerCount()

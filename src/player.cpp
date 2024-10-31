@@ -55,6 +55,13 @@ void Player::GIVEplayerCard(Card givenCard)
   }
 }
 
+int Player::blindInput(int amount, int blind  = 0)
+{
+  this->playerStack -= amount;
+  this->blind = blind;
+  return amount;
+}
+
 void Player::SETplayerID(string id)
 {
   playerID = id;

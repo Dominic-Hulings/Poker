@@ -16,6 +16,7 @@ class Table
     int GETmaxPlayers();
     void SETmaxPlayers(int max);
     void SETplayerCount(int pCount);
+    void SETdBlinds(std::pair<int, int> blinds);
     int NewPlayerJoin(Player* pPlayer);
     void NewHand();
     std::vector<Player*> pPlayerIDsVec; //* Stores as {playerID, userName}
@@ -23,7 +24,7 @@ class Table
   private:
     int playerCount;
     int maxPlayers;
-    //std::vector<std::pair<std::string, std::string>> playerIDsVec;
+    std::pair<int, int> blinds;
     Dealer TableDealer;
 };
 

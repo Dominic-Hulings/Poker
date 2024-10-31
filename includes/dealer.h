@@ -13,12 +13,16 @@ class Dealer : CT
   public:
     Dealer();
     int GETButtonPosition();
+    std::pair<int, int> GETblinds();
     void preHandCheck(std::vector<Player*>* p2pPlayerIDsVec);
     void SETplayersToDeal(int players);
+    void SETblinds(std::pair<int, int> blinds);
 
   private:
     int playersToDeal;
     int buttonPosition;
+    int littleBlind;
+    int bigBlind;
     std::stack<Card> DealerDeck;
     int Hand(bool isTime, std::vector<Player*>* p2pPlayerIDsVec);
     void SETbuttonPosition(int buttonPos);

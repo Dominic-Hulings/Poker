@@ -15,6 +15,8 @@ class Player : CT
     Player* GETpSelfPointer();
     void SETplayerID(std::string id);
     void GIVEplayerCard(Card givenCard);
+    int blindInput(int amount, int blind);
+    int blind;
   private:
     std::pair<Card, Card> playerHand;
     int playerStack;

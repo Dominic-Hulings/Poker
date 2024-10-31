@@ -41,6 +41,11 @@ int Dealer::GETButtonPosition()
   return buttonPosition;
 }
 
+std::pair<int, int> Dealer::GETblinds()
+{
+  return {this->littleBlind, this->bigBlind};
+}
+
 void Dealer::SETplayersToDeal(int players)
 {
   this->playersToDeal = players;
@@ -49,6 +54,12 @@ void Dealer::SETplayersToDeal(int players)
 void Dealer::SETbuttonPosition(int inButtonPos)
 {
   buttonPosition = CheckIfNeg(inButtonPos, playersToDeal);
+}
+
+void Dealer::SETblinds(std::pair<int, int> blinds)
+{
+  this->littleBlind = blinds.first;
+  this->bigBlind = blinds.second;
 }
 
 void Dealer::preHandCheck(std::vector<Player*>* p2pPlayerIDsVec)
@@ -83,10 +94,16 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
     DealerDeck.pop();
     playerBeingDealt = CheckIfNeg(playerBeingDealt - 1, playersToDeal);
   }
+
   while(playersVec.at(buttonPosition)->GETplayerHand().second.second == "clear");
   //* DEAL CARDS TO PLAYERS }
 
+  //* FORCE BLINDS OUT {
 
+  playersVec.at(toAct)->blindInput(GETblinds().second, 1);
+  playersVec.at(CheckIfNeg(toAct - 1, playersToDeal))->blindInput(GETblinds().second, 2);
+
+  //* FORCE BLINDS OUT }
 
   //* PLAY HAND {
 
@@ -113,6 +130,7 @@ int Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
     {
       cout << "input not recognized\n";
     }
+
     toAct = CheckIfNeg(toAct - 1, playersToDeal);
   }
 
