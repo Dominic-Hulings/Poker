@@ -18,7 +18,8 @@ class Player : CT
     int blindInput(int amount, int blind);
     int blind;
     bool turnOver;
-  private:
+    int amtInPot;
+  private: 
     std::pair<Card, Card> playerHand;
     int playerStack;
     Player* pSelfPointer;

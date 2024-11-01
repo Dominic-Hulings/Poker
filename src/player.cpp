@@ -60,6 +60,7 @@ int Player::blindInput(int amount, int blind)
 {
   this->playerStack -= amount;
   this->blind = blind;
+  this->amtInPot = amount;
   return amount;
 }
 

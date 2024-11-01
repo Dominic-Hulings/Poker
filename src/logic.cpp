@@ -47,6 +47,10 @@ void PokerLog::Action()
       {
         cout << "How much: ";
         cin >> amt;
+        if(playersVec.at(toAct)->GETplayerStack() < amt)
+        {
+          
+        }
         for(Player* player : playersVec)
         {
           player->turnOver = false;

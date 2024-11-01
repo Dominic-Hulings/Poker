@@ -63,6 +63,11 @@ void Dealer::SETblinds(std::pair<int, int> blinds)
   this->bigBlind = blinds.second;
 }
 
+void Dealer::PlayCardsToField(int amtOfCards)
+{
+
+}
+
 void Dealer::preHandCheck(std::vector<Player*>* p2pPlayerIDsVec)
 {
   // TODO: Check if its time to start a new hand and return true or false and pass it to Hand function
@@ -103,7 +108,7 @@ Player* Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
   //* FORCE BLINDS OUT {
 
   playersVec.at(toAct)->blindInput(GETblinds().second, 1);
-  playersVec.at(CheckIfNeg(toAct - 1, playersToDeal))->blindInput(GETblinds().second, 2);
+  playersVec.at(CheckIfNeg(toAct - 1, playersToDeal))->blindInput(GETblinds().first, 2);
 
   //* FORCE BLINDS OUT }
 

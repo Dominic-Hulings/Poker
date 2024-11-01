@@ -25,6 +25,7 @@ class Dealer : CT
     int toAct;
     std::vector<Player*> playersVec;
     int CheckIfNeg(int num, int replaceNumIfNeg);
+    void PlayCardsToField(int amtOfCards);
   private:
     std::stack<Card> DealerDeck;
     Player* Hand(bool isTime, std::vector<Player*>* p2pPlayerIDsVec);
