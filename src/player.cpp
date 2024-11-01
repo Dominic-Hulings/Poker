@@ -1,8 +1,8 @@
 #include <string>
-//#include <iostream>
+// #include <iostream>
 
-#include "player.h"
 #include "global.h"
+#include "player.h"
 
 using std::string, std::pair;
 
@@ -28,7 +28,7 @@ string Player::GETplayerID()
   return playerID;
 }
 
-Player* Player::GETpSelfPointer()
+Player *Player::GETpSelfPointer()
 {
   return pSelfPointer;
 }
@@ -45,7 +45,7 @@ int Player::GETplayerStack()
 
 void Player::GIVEplayerCard(Card givenCard)
 {
-  if(playerHand.first.first == "clear")
+  if (playerHand.first.first == "clear")
   {
     playerHand.first = givenCard;
   }
@@ -62,6 +62,19 @@ int Player::blindInput(int amount, int blind)
   this->blind = blind;
   this->amtInPot = amount;
   return amount;
+}
+
+void Player::SETplayerStack(int amt, bool isRemoving)
+{
+  if (!isRemoving)
+  {
+    this->playerStack += amt;
+  }
+
+  else
+  {
+    this->playerStack -= amt;
+  }
 }
 
 void Player::SETplayerID(string id)

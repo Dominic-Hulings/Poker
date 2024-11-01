@@ -1,8 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include <string>
 #include "global.h"
+#include <string>
 
 class Player : CT
 {
@@ -12,17 +12,19 @@ class Player : CT
     std::string GETplayerID();
     int GETplayerStack();
     std::pair<Card, Card> GETplayerHand();
-    Player* GETpSelfPointer();
+    Player *GETpSelfPointer();
     void SETplayerID(std::string id);
     void GIVEplayerCard(Card givenCard);
     int blindInput(int amount, int blind);
+    void SETplayerStack(int amt, bool isRemoving);  //* if isRemoving = false then add the total instead
     int blind;
     bool turnOver;
     int amtInPot;
-  private: 
+
+  private:
     std::pair<Card, Card> playerHand;
     int playerStack;
-    Player* pSelfPointer;
+    Player *pSelfPointer;
     std::string userName;
     std::string playerID;
 };

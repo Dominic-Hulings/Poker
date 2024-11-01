@@ -1,11 +1,11 @@
-#include <string>
-#include <iostream>
 #include <ctime>
+//#include <iostream>
+#include <string>
 
 #include "player.h"
 #include "table.h"
 
-using std::string, std::cout;
+using std::string;
 
 int main() //* Where the main function will be, just used for testing as of now
 {
@@ -13,7 +13,7 @@ int main() //* Where the main function will be, just used for testing as of now
   Player Guest("User-Guest");
   Player Guest1("User-Guest1");
 
-  //Player Guest2("User-Guest2");
+  // Player Guest2("User-Guest2");
 
   Table NewTable(5, "placeholder_name", false);
 
@@ -21,13 +21,9 @@ int main() //* Where the main function will be, just used for testing as of now
   NewTable.NewPlayerJoin(Guest.GETpSelfPointer());
   NewTable.NewPlayerJoin(Guest1.GETpSelfPointer());
 
-  //NewTable.NewPlayerJoin(Guest2.GETpSelfPointer());
+  // NewTable.NewPlayerJoin(Guest2.GETpSelfPointer());
 
   NewTable.NewHand();
-
-  
-
-
 
   return 1;
 }

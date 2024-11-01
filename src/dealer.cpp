@@ -1,14 +1,14 @@
-#include <iostream>
+//#include <iostream>
 #include <vector>
-//#include <array>
+// #include <array>
 
 #include "dealer.h"
 #include "deck.h"
-#include "player.h"
-#include "logic.h"
 #include "global.h"
+#include "logic.h"
+#include "player.h"
 
-using std::string, std::vector, std::cout, std::cin;
+using std::string, std::vector;
 
 typedef CT::Card Card;
 
@@ -26,7 +26,7 @@ Dealer::Dealer()
 
 int Dealer::CheckIfNeg(int num, int replaceNumIfNeg)
 {
-  if(num < 0)
+  if (num < 0)
   {
     return replaceNumIfNeg;
   }
@@ -65,16 +65,15 @@ void Dealer::SETblinds(std::pair<int, int> blinds)
 
 void Dealer::PlayCardsToField(int amtOfCards)
 {
-
 }
 
-void Dealer::preHandCheck(std::vector<Player*>* p2pPlayerIDsVec)
+void Dealer::preHandCheck(std::vector<Player *> *p2pPlayerIDsVec)
 {
   // TODO: Check if its time to start a new hand and return true or false and pass it to Hand function
   this->Hand(true, p2pPlayerIDsVec);
 }
 
-Player* Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
+Player *Dealer::Hand(bool isTimeToDeal, std::vector<Player *> *p2pPlayerIDsVec)
 {
   //* DEAL CARDS TO PLAYERS {
   if (!isTimeToDeal)
@@ -85,7 +84,7 @@ Player* Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
   vector<Player*> playersVec;
   int counter = 0;
 
-  for(int players = playersToDeal + 1; players; players--)
+  for (int players = playersToDeal + 1; players; players--)
   {
     playersVec.push_back(p2pPlayerIDsVec->at(counter));
     counter++;
@@ -102,7 +101,7 @@ Player* Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
     playerBeingDealt = CheckIfNeg(playerBeingDealt - 1, playersToDeal);
   }
 
-  while(playersVec.at(buttonPosition)->GETplayerHand().second.second == "clear");
+  while (playersVec.at(buttonPosition)->GETplayerHand().second.second == "clear");
   //* DEAL CARDS TO PLAYERS }
 
   //* FORCE BLINDS OUT {
@@ -116,11 +115,8 @@ Player* Dealer::Hand(bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec)
 
   PokerLog Logic;
   Logic.AllPhases();
-  
-
 
   //* PLAY HAND }
-  
-  
+
   return playersVec.at(toAct);
 }

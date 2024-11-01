@@ -1,12 +1,12 @@
-#include <string>
+#include <ctime>
 #include <iostream>
 #include <random>
-#include <ctime>
+#include <string>
 #include <vector>
 
-#include "table.h"
 #include "player.h"
-//#include "global.h"
+#include "table.h"
+// #include "global.h"
 
 using std::string, std::cout;
 
@@ -65,12 +65,11 @@ void Table::NewHand()
   this->TableDealer.preHandCheck(p2pPlayerIDsVec);
 }
 
-
 //*******************/
 
-int Table::NewPlayerJoin(Player* pPlayer)
+int Table::NewPlayerJoin(Player *pPlayer)
 {
-  if(!(maxPlayers >= playerCount))
+  if (!(maxPlayers >= playerCount))
   {
     cout << "Max Player limit met and/or exceeded" << "\n";
     return 0;
@@ -83,7 +82,7 @@ int Table::NewPlayerJoin(Player* pPlayer)
   std::uniform_int_distribution<std::mt19937::result_type> dist62(1, 62);
   string playerID;
 
-  for (int counter = 0; counter < 20; counter++)  
+  for (int counter = 0; counter < 20; counter++)
   {
     playerID += charList[dist62(rng)];
   }

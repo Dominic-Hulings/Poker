@@ -8,13 +8,15 @@ class PokerLog : protected Dealer
   public:
     PokerLog();
     void AllPhases();
+
   private:
+    int pot;
     void Action();
     void Flop();
     void Turn();
     void River();
+    void Winner(Player* player, int amtWon);
+    bool onePlayerLeft();
 };
-
-
 
 #endif
