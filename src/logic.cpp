@@ -35,14 +35,20 @@ void PokerLog::AllPhases()
   Action();
   Flop();
   Action();
+  Turn();
+  Action();
+  River();
+  Action();
 }
 
 void PokerLog::PrintField()
 {
+  cout << "-------------FIELD-------------\n";
   for(int counter = 0; counter < pMyDealer->GETfield().size(); counter++)
   {
     cout << pMyDealer->GETfield().at(counter).first << " of " << pMyDealer->GETfield().at(counter).second << "\n";
   }
+  cout << "-------------FIELD-------------\n";
 }
 
 bool PokerLog::onePlayerLeft()
@@ -93,7 +99,7 @@ void PokerLog::Action()
       {
         canCheck = true;
         cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
-        cout << "Type check, bet, or fold: ";
+        cout << "Type check, bet, field, or fold: ";
       }
 
       else
@@ -101,7 +107,7 @@ void PokerLog::Action()
         canCheck = false;
         cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
         cout << "It's " << toCall << " to call.\n";
-        cout << "Type bet, call, or fold: ";
+        cout << "Type bet, call, field, or fold: ";
       }
 
       cin >> x;
@@ -164,6 +170,12 @@ void PokerLog::Action()
         }
       }
 
+      else if(x == "field")
+      {
+        PrintField();
+        continue;
+      }
+
       else
       {
         cout << "input not recognized. Try again\n";
@@ -176,7 +188,7 @@ void PokerLog::Action()
       toCall = amt - playersVec.at(toAct)->amtInPot;
       cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
       cout << "It's " << toCall << " to call.\n";
-      cout << "Type call, raise, or fold: ";
+      cout << "Type call, raise, field, or fold: ";
       cin >> x;
 
       if (x == "call")
@@ -229,6 +241,12 @@ void PokerLog::Action()
         }
       }
 
+      else if(x == "field")
+      {
+        PrintField();
+        continue;
+      }
+
       else
       {
         cout << "input not recognized. Try again\n";
@@ -250,10 +268,16 @@ void PokerLog::Flop()
 
 void PokerLog::Turn()
 {
+  cout << "\nGoing to turn\n\n";
+  pMyDealer->PlayCardsToField(1);
+  PrintField();
 }
 
 void PokerLog::River()
 {
+  cout << "\nGoing to river\n\n";
+  pMyDealer->PlayCardsToField(1);
+  PrintField();
 }
 
 
