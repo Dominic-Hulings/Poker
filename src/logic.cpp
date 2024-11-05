@@ -49,6 +49,7 @@ void PokerLog::Winner(Player* player, int amtWon)
 void PokerLog::Action()
 {
   bool wasBet = false;
+  bool canCheck = false;
   string x;
   int toCall = 0;
   int amt = 0;
@@ -67,12 +68,25 @@ void PokerLog::Action()
     if (!wasBet)
     {
       toCall = bigBlind - playersVec.at(toAct)->amtInPot;
-      cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
-      cout << "Type check, bet, call, or fold: ";
-      cout << "It's " << toCall << " to call.\n";
+
+      if(toCall == 0)
+      {
+        canCheck = true;
+        cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
+        cout << "Type check, bet, or fold: ";
+      }
+
+      else
+      {
+        canCheck = false;
+        cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
+        cout << "It's " << toCall << " to call.\n";
+        cout << "Type bet, call, or fold: ";
+      }
+
       cin >> x;
 
-      if (x == "check")
+      if (x == "check" && canCheck)
       {
         cout << "check\n";
         playersVec.at(toAct)->turnOver = true;
@@ -102,7 +116,7 @@ void PokerLog::Action()
         wasBet = true;
       }
 
-      else if (x == "call")
+      else if (x == "call" && !canCheck)
       {
         cout << "call\n";
         if (playersVec.at(toAct)->GETplayerStack() < toCall)
