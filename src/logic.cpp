@@ -4,7 +4,7 @@
 
 #include "logic.h"
 
-using std::string, std::cout, std::cin, std::vector;
+using std::string, std::cout, std::cin, std::vector, std::to_string;
 
 PokerLog::PokerLog(int inToAct, std::vector<Player*>* inpPlayersVec, int inPlayersToDeal, int inLittleBlind, int inBigBlind)
 {
@@ -62,9 +62,13 @@ void PokerLog::Action()
       break;
     }
 
-    cout << playersVec.at(toAct)->GETplayerStack() << "\n";
-    cout << playersVec.at(toAct)->amtInPot << "\n";
+    cout << "Your stack: " << playersVec.at(toAct)->GETplayerStack() << "\n";
+    cout << "Amount you have in the pot: " << playersVec.at(toAct)->amtInPot << "\n\n";
 
+    cout << "Your hand is: " << playersVec.at(toAct)->GETplayerHand().first.first << " of " << playersVec.at(toAct)->GETplayerHand().first.second;
+    cout << "\nAnd: " << playersVec.at(toAct)->GETplayerHand().second.first << " of " << playersVec.at(toAct)->GETplayerHand().second.second;
+    cout << "\n\n";
+    
     if (!wasBet)
     {
       toCall = bigBlind - playersVec.at(toAct)->amtInPot;
