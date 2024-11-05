@@ -1,4 +1,4 @@
-//#include <iostream>
+#include <iostream>
 #include <vector>
 // #include <array>
 
@@ -8,7 +8,7 @@
 #include "logic.h"
 #include "player.h"
 
-using std::string, std::vector;
+using std::string, std::vector, std::cout;
 
 typedef CT::Card Card;
 

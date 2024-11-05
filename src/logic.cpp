@@ -61,10 +61,15 @@ void PokerLog::Action()
       break;
     }
 
+    cout << playersVec.at(toAct)->GETplayerStack() << "\n";
+    cout << playersVec.at(toAct)->amtInPot << "\n";
+
     if (!wasBet)
     {
+      toCall = bigBlind - playersVec.at(toAct)->amtInPot;
       cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
-      cout << "Type check, bet, or fold: ";
+      cout << "Type check, bet, call, or fold: ";
+      cout << "It's " << toCall << " to call.\n";
       cin >> x;
 
       if (x == "check")
@@ -90,15 +95,31 @@ void PokerLog::Action()
           player->turnOver = false;
         }
 
-        amt = inAmt;
+        amt = inAmt + playersVec.at(toAct)->amtInPot;
         pot += amt;
         playersVec.at(toAct)->SETplayerStack(amt, true);
         playersVec.at(toAct)->turnOver = true;
+        wasBet = true;
+      }
+
+      else if (x == "call")
+      {
+        cout << "call\n";
+        if (playersVec.at(toAct)->GETplayerStack() < toCall)
+        {
+          cout << "You don't have enough to call\n";
+          continue;
+        }
+
+        pot += toCall;
+        playersVec.at(toAct)->SETplayerStack(toCall, true);
+        playersVec.at(toAct)->turnOver = true;        
+
       }
 
       else if (x == "fold")
       {
-        cout << "fold";
+        cout << "fold\n";
         playersVec.erase(playersVec.begin() + toAct);
         playersToDeal--;
         if(onePlayerLeft())
@@ -118,13 +139,14 @@ void PokerLog::Action()
     {
       toCall = amt - playersVec.at(toAct)->amtInPot;
       cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
-      cout << "It's " << toCall << " to call.";
+      cout << "It's " << toCall << " to call.\n";
       cout << "Type call, raise, or fold: ";
       cin >> x;
 
       if (x == "call")
       {
-        cout << "call";
+        cout << "call\n";
+
         if (playersVec.at(toAct)->GETplayerStack() < toCall)
         {
           cout << "You don't have enough to call\n";

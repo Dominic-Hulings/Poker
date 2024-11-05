@@ -14,8 +14,9 @@ Player::Player(string inUserName)
   this->pSelfPointer = this;
   this->playerHand.first = {"clear", "clear"};
   this->playerHand.second = {"clear", "clear"};
-  this->playerStack = 500;
+  this->playerStack = 5000;
   this->blind = 0;
+  this->amtInPot = 0;
 }
 
 string Player::GETuserName()

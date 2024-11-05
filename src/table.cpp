@@ -8,7 +8,7 @@
 #include "table.h"
 // #include "global.h"
 
-using std::string, std::cout;
+using std::string, std::cout, std::pair;
 
 /*
 private class Table::TableDealer
@@ -30,11 +30,11 @@ Table::Table(int inMaxPlayers, string inTableName, bool isSave)
   maxPlayers = inMaxPlayers;
   tableName = inTableName;
   p2pPlayerIDsVec = &pPlayerIDsVec;
-  blinds = {100, 200};
+  SETdBlinds({100, 200});
   SETplayerCount(0);
 }
 
-void Table::SETdBlinds(std::pair<int, int> blinds)
+void Table::SETdBlinds(pair<int, int> blinds)
 {
   this->TableDealer.SETblinds(blinds);
 }
