@@ -48,3 +48,4 @@ Royal Flush, Straight Flush, Four-of-a-Kind, Full House, Flush, Straight, Three-
 
 DISCLAIMER!
   The app uses FAKE MONEY, no actual gambling is being incited
+

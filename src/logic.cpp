@@ -5,7 +5,7 @@
 
 #include "logic.h"
 
-using std::string, std::cout, std::cin, std::vector, std::find;
+using std::string, std::cout, std::cin, std::vector, std::pair;
 
 PokerLog::PokerLog(Dealer* inpDealer, int inToAct, std::vector<Player*>* inpPlayersVec, int inPlayersToDeal, int inLittleBlind, int inBigBlind)
 {
@@ -284,155 +284,119 @@ void PokerLog::River()
 
 void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 {
-  vector<Card> fieldAndHand;
   vector<string> suitVec;
+  vector<string> valueVec;
+  vector<pair<string, int>> Pairs;
+  int tempCounter = 0;
+  string mostSuit;
+  bool hasFlush = false;
+  bool hasPair = false;
+  bool hasStraight = false;
+
+  for (Card card : field)
+  {
+    valueVec.push_back(card.first);
+    suitVec.push_back(card.second);
+  }
 
   for (Player* player : players)
   {
+    vector<Card> fieldAndHand = field;
     fieldAndHand.push_back(player->GETplayerHand().first);
     fieldAndHand.push_back(player->GETplayerHand().second);
 
-    for (Card card : fieldAndHand)
+    suitVec.push_back(player->GETplayerHand().first.second);
+    suitVec.push_back(player->GETplayerHand().second.second);
+
+    valueVec.push_back(player->GETplayerHand().first.first);
+    valueVec.push_back(player->GETplayerHand().second.first);
+
+    for (string suit : Suits)
     {
-      suitVec.push_back(card.second);
+      if (count(suitVec.begin(), suitVec.end(), suit) > tempCounter)
+      {
+        tempCounter = count(suitVec.begin(), suitVec.end(), suit);
+        mostSuit = suit;
+      }
     }
 
+    if (tempCounter >= 5)
+    {
+      hasFlush = true;
+    }
+
+    tempCounter = 1;
+
+    for (string value : Values)
+    {
+      if (count(valueVec.begin(), valueVec.end(), value) > tempCounter)
+      {
+        Pairs.push_back({value, count(valueVec.begin(), valueVec.end(), value)});
+      }
+    }
     
   }
 }
 
-
-
-
-
-
 /*
 
-while (true)
-  {
-    if (playersVec.at(toAct)->turnOver == true)
-    {
-      break;
-    }
+value, suit
+value, suit
+value, suit
+value, suit
+value, suit
+value, suit
+value, suit
 
-    if (!wasBet)
-    {
-      cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
-      cout << "Type check, bet, or fold: ";
-      cin >> x;
 
-      if (x == "check")
-      {
-        cout << "check\n";
-        playersVec.at(toAct)->turnOver = true;
-      }
 
-      else if (x == "bet")
-      {
-        cout << "bet\n";
-        cout << "How much: ";
-        cin >> inAmt;
 
-        if (playersVec.at(toAct)->GETplayerStack() < inAmt)
-        {
-          cout << "You don't have that much to bet\n";
-          continue;
-        }
 
-        for (Player *player : playersVec)
-        {
-          player->turnOver = false;
-        }
 
-        amt = inAmt;
-        pot += amt;
-        playersVec.at(toAct)->SETplayerStack(amt, true);
-        playersVec.at(toAct)->turnOver = true;
-      }
 
-      else if (x == "fold")
-      {
-        cout << "fold";
-        playersVec.erase(playersVec.begin() + toAct);
-        playersToDeal--;
-        if(onePlayerLeft())
-        {
-          Winner(playersVec.at(toAct), pot);
-        }
-      }
 
-      else
-      {
-        cout << "input not recognized. Try again\n";
-        continue;
-      }
-    }
 
-    else
-    {
-      toCall = amt - playersVec.at(toAct)->amtInPot;
-      cout << "It's " << playersVec.at(toAct)->GETuserName() << "'s turn\n";
-      cout << "It's " << toCall << " to call.";
-      cout << "Type call, raise, or fold: ";
-      cin >> x;
 
-      if (x == "call")
-      {
-        cout << "call";
-        if (playersVec.at(toAct)->GETplayerStack() < toCall)
-        {
-          cout << "You don't have enough to call\n";
-          continue;
-        }
 
-        pot += toCall;
-        playersVec.at(toAct)->SETplayerStack(toCall, true);
-        playersVec.at(toAct)->turnOver = true;        
 
-      }
 
-      else if (x == "raise")
-      {
-        cout << "raise\n";
-        cout << "How much: ";
-        cin >> inAmt;
 
-        if (playersVec.at(toAct)->GETplayerStack() < amt + inAmt)
-        {
-          cout << "You don't have that much to bet\n";
-          continue;
-        }
 
-        for (Player *player : playersVec)
-        {
-          player->turnOver = false;
-        }
 
-        amt += inAmt;
-        playersVec.at(toAct)->SETplayerStack(amt, true);
-        playersVec.at(toAct)->turnOver = true;
 
-      }
 
-      else if (x == "fold")
-      {
-        cout << "fold";
-        playersVec.erase(playersVec.begin() + toAct);
-        playersToDeal--;
-        if(onePlayerLeft())
-        {
-          Winner(playersVec.at(toAct), pot);
-        }
-      }
 
-      else
-      {
-        cout << "input not recognized. Try again\n";
-        continue;
-      }
-    }
 
-    toAct = CheckIfNeg(toAct - 1, playersToDeal);
-  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 */
