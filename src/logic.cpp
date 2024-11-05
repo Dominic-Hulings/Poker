@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 #include "logic.h"
 
-using std::string, std::cout, std::cin, std::vector;
+using std::string, std::cout, std::cin, std::vector, std::find;
 
 PokerLog::PokerLog(Dealer* inpDealer, int inToAct, std::vector<Player*>* inpPlayersVec, int inPlayersToDeal, int inLittleBlind, int inBigBlind)
 {
@@ -39,6 +40,7 @@ void PokerLog::AllPhases()
   Action();
   River();
   Action();
+  WhoWon(playersVec, pMyDealer->GETfield());
 }
 
 void PokerLog::PrintField()
@@ -280,7 +282,24 @@ void PokerLog::River()
   PrintField();
 }
 
+void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
+{
+  vector<Card> fieldAndHand;
+  vector<string> suitVec;
 
+  for (Player* player : players)
+  {
+    fieldAndHand.push_back(player->GETplayerHand().first);
+    fieldAndHand.push_back(player->GETplayerHand().second);
+
+    for (Card card : fieldAndHand)
+    {
+      suitVec.push_back(card.second);
+    }
+
+    
+  }
+}
 
 
 

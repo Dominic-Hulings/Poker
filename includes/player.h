@@ -20,6 +20,7 @@ class Player : CT
     int blind;
     bool turnOver;
     int amtInPot;
+    int cardAndFieldValue;
 
   private:
     std::pair<Card, Card> playerHand;

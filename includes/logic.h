@@ -25,6 +25,7 @@ class PokerLog : CT
     void Flop();
     void Turn();
     void River();
+    void WhoWon(std::vector<Player*> players, std::vector<Card> field);
     void Winner(Player* player, int amtWon);
     bool onePlayerLeft();
     int CheckIfNeg(int num, int replaceNumIfNed);
