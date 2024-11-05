@@ -284,6 +284,7 @@ void PokerLog::River()
 
 void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 {
+  pair<Player*, int> currentWinner;
   vector<string> suitVec;
   vector<string> valueVec;
   vector<pair<string, int>> Pairs;
@@ -332,8 +333,11 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       if (count(valueVec.begin(), valueVec.end(), value) > tempCounter)
       {
         Pairs.push_back({value, count(valueVec.begin(), valueVec.end(), value)});
+        hasPair = true;
       }
     }
+
+    
     
   }
 }
