@@ -65,6 +65,16 @@ void Dealer::SETblinds(std::pair<int, int> blinds)
 
 void Dealer::PlayCardsToField(int amtOfCards)
 {
+  for(int counter = amtOfCards; counter != 0; counter--)
+  {
+    Field.push_back(DealerDeck.top());
+    DealerDeck.pop();
+  }
+}
+
+std::vector<Card> Dealer::GETfield()
+{
+  return Field;
 }
 
 void Dealer::preHandCheck(std::vector<Player *> *p2pPlayerIDsVec)
@@ -114,7 +124,7 @@ Player *Dealer::Hand(bool isTimeToDeal, std::vector<Player *> *p2pPlayerIDsVec)
   //* PLAY HAND {
 
   vector<Player*>* pPlayersVec = &playersVec;
-  PokerLog Logic(toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind);
+  PokerLog Logic(this, toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind);
   Logic.AllPhases();
 
   //* PLAY HAND }

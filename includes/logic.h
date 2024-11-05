@@ -2,13 +2,15 @@
 #define LOGIC_H
 
 #include <vector>
+#include "dealer.h"
 #include "player.h"
 #include "global.h"
 
 class PokerLog : CT
 {
   public:
-    PokerLog(int inToAct, std::vector<Player*>* inpPlayersVec, int inPlayersToDeal, int inLittleBlind, int inBigBlind);
+    PokerLog(Dealer* inpDealer, int inToAct, std::vector<Player*>* inpPlayersVec, int inPlayersToDeal, int inLittleBlind, int inBigBlind);
+    void PrintField();
     void AllPhases();
 
   private:
@@ -17,6 +19,7 @@ class PokerLog : CT
     int littleBlind;
     int bigBlind;
     int playersToDeal;
+    Dealer* pMyDealer;
     std::vector<Player*> playersVec;
     void Action();
     void Flop();

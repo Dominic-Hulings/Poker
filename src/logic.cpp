@@ -4,15 +4,16 @@
 
 #include "logic.h"
 
-using std::string, std::cout, std::cin, std::vector, std::to_string;
+using std::string, std::cout, std::cin, std::vector;
 
-PokerLog::PokerLog(int inToAct, std::vector<Player*>* inpPlayersVec, int inPlayersToDeal, int inLittleBlind, int inBigBlind)
+PokerLog::PokerLog(Dealer* inpDealer, int inToAct, std::vector<Player*>* inpPlayersVec, int inPlayersToDeal, int inLittleBlind, int inBigBlind)
 {
   this->toAct = inToAct;
   this->littleBlind = inLittleBlind;
   this->bigBlind = inBigBlind;
   this->playersToDeal = inPlayersToDeal;
   this->playersVec = *inpPlayersVec;
+  this->pMyDealer = inpDealer;
 }
 
 int PokerLog::CheckIfNeg(int num, int replaceNumIfNeg)
@@ -32,7 +33,16 @@ void PokerLog::AllPhases()
 {
   int pot = littleBlind + bigBlind;
   Action();
-  //Flop();
+  Flop();
+  Action();
+}
+
+void PokerLog::PrintField()
+{
+  for(int counter = 0; counter < pMyDealer->GETfield().size(); counter++)
+  {
+    cout << pMyDealer->GETfield().at(counter).first << " of " << pMyDealer->GETfield().at(counter).second << "\n";
+  }
 }
 
 bool PokerLog::onePlayerLeft()
@@ -55,6 +65,11 @@ void PokerLog::Action()
   int amt = 0;
   int inAmt = 0;
 
+  for (Player *player : playersVec)
+  {
+    player->turnOver = false;
+  }
+
   while (true)
   {
     if (playersVec.at(toAct)->turnOver == true)
@@ -62,6 +77,7 @@ void PokerLog::Action()
       break;
     }
 
+    cout << "--------------------------------\n";
     cout << "Your stack: " << playersVec.at(toAct)->GETplayerStack() << "\n";
     cout << "Amount you have in the pot: " << playersVec.at(toAct)->amtInPot << "\n\n";
 
@@ -117,6 +133,7 @@ void PokerLog::Action()
         pot += amt;
         playersVec.at(toAct)->SETplayerStack(amt, true);
         playersVec.at(toAct)->turnOver = true;
+        playersVec.at(toAct)->amtInPot = amt;
         wasBet = true;
       }
 
@@ -131,7 +148,8 @@ void PokerLog::Action()
 
         pot += toCall;
         playersVec.at(toAct)->SETplayerStack(toCall, true);
-        playersVec.at(toAct)->turnOver = true;        
+        playersVec.at(toAct)->turnOver = true;
+        playersVec.at(toAct)->amtInPot += toCall;        
 
       }
 
@@ -225,7 +243,9 @@ void PokerLog::Action()
 }
 void PokerLog::Flop()
 {
-  cout << "Going to flop\n";
+  cout << "\nGoing to flop\n\n";
+  pMyDealer->PlayCardsToField(3);
+  PrintField();
 }
 
 void PokerLog::Turn()
