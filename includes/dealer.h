@@ -24,7 +24,7 @@ class Dealer : CT
     int littleBlind;
     int bigBlind;
     int toAct;
-    std::vector<Player *> playersVec;
+    std::vector<Player*> playersVec;
     int CheckIfNeg(int num, int replaceNumIfNeg);
     void PlayCardsToField(int amtOfCards);
 

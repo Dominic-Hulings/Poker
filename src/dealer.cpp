@@ -113,7 +113,8 @@ Player *Dealer::Hand(bool isTimeToDeal, std::vector<Player *> *p2pPlayerIDsVec)
 
   //* PLAY HAND {
 
-  PokerLog Logic;
+  vector<Player*>* pPlayersVec = &playersVec;
+  PokerLog Logic(toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind);
   Logic.AllPhases();
 
   //* PLAY HAND }
