@@ -21,7 +21,8 @@ class PokerLog : CT
     int playersToDeal;
     Dealer* pMyDealer;
     std::vector<Player*> playersVec;
-    std::vector<int> ConvertValueToNum(std::vector<std::string> values) ;
+    std::vector<int> ConvertValueToNum(std::vector<std::string> values);
+    bool HasAce(std::vector<int> values);
     void Action();
     void Flop();
     void Turn();

@@ -41,8 +41,26 @@ vector<int> PokerLog::ConvertValueToNum(vector<string> values)
     cardValueVec.push_back(index);
   }
 
+  if (HasAce(cardValueVec))
+  {
+    cardValueVec.push_back(13);
+  }
+
   sort(cardValueVec.begin(), cardValueVec.end());
   return cardValueVec;
+}
+
+bool PokerLog::HasAce(vector<int> values)
+{
+  for (int value : values)
+  {
+    if (value == 0)
+    {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 void PokerLog::AllPhases()
@@ -299,15 +317,13 @@ void PokerLog::River()
 
 void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 {
-  pair<Player*, int> currentWinner;
+  pair<Player*, pair<int, int>> currentWinner;
+  pair<Player*, pair<int, int>> currentPlayerHand;
   vector<string> suitVec;
   vector<string> valueVec;
   vector<pair<string, int>> Pairs;
   int tempCounter = 0;
   string mostSuit;
-  bool hasFlush = false;
-  bool hasPair = false;
-  bool hasStraight = false;
 
   for (Card card : field)
   {
@@ -317,6 +333,12 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 
   for (Player* player : players)
   {
+    bool hasFlush = false;
+    bool hasPair = false;
+    bool hasStraight = false;
+    bool has3OfKind = false;
+    bool has4OfKind = false;
+    currentPlayerHand.first = player;
     vector<Card> fieldAndHand = field;
     fieldAndHand.push_back(player->GETplayerHand().first);
     fieldAndHand.push_back(player->GETplayerHand().second);
@@ -341,33 +363,66 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       hasFlush = true;
     }
 
-    tempCounter = 1;
-
     for (string value : Values)
     {
-      if (count(valueVec.begin(), valueVec.end(), value) > tempCounter)
+      if (count(valueVec.begin(), valueVec.end(), value) >= 2)
       {
         Pairs.push_back({value, count(valueVec.begin(), valueVec.end(), value)});
         hasPair = true;
+
+        if (count(valueVec.begin(), valueVec.end(), value) == 3)
+        {
+          has3OfKind = true;
+        }
+
+        if (count(valueVec.begin(), valueVec.end(), value) == 4)
+        {
+          has4OfKind = true;
+        }
       } 
     }
 
     vector<int> valuesIntVec = ConvertValueToNum(valueVec);
-    
+    int nextIndex = 1;
+    int valuesInRow = 1;
+
+    for (int val : valuesIntVec)
+    {
+      if (valuesInRow >= 5)
+      {
+        hasStraight = true;
+        int highestCardInStraightIndex = valuesIntVec.at(nextIndex);
+      }
+
+      if (val + 1 == valuesIntVec.at(nextIndex))
+      {
+        nextIndex++;
+        valuesInRow++;
+      }
+
+      else
+      {
+        nextIndex++;
+        valuesInRow = 1;
+      }
+    }
+
+    if (!hasPair && !hasFlush && !hasStraight)
+    {
+      currentPlayerHand.second.first = 1;
+      currentPlayerHand.second.second = valuesIntVec.back();
+    }
+
+    else if (hasPair)
+    {
+
+    }
 
     
   }
 }
 
 /*
-
-value, suit
-value, suit
-value, suit
-value, suit
-value, suit
-value, suit
-value, suit
 
 
 

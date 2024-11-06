@@ -44,7 +44,16 @@ Functions:
 
 The play moves clockwise around the table, starting with action to the left of the dealer button. The 'button' is a round disc that sits in front of a player and is rotated one seat to the left every hand.
 
-Royal Flush, Straight Flush, Four-of-a-Kind, Full House, Flush, Straight, Three-of-a-Kind, Two Pair, One Pair, High Card
+Royal Flush 10
+Straight Flush  9
+Four-of-a-Kind  8
+Full House  7
+Flush 6
+Straight  5
+Three-of-a-Kind 4
+Two Pair  3
+One Pair  2
+High Card 1
 
 DISCLAIMER!
   The app uses FAKE MONEY, no actual gambling is being incited
