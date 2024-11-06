@@ -30,6 +30,21 @@ int PokerLog::CheckIfNeg(int num, int replaceNumIfNeg)
   }
 }
 
+vector<int> PokerLog::ConvertValueToNum(vector<string> values)
+{
+  vector<int> cardValueVec;
+
+  for (int counter = 0; counter < 7; counter++)
+  {
+    auto cardValue = find(Values, Values + 13, values[counter]);
+    int index = cardValue - Values;
+    cardValueVec.push_back(index);
+  }
+
+  sort(cardValueVec.begin(), cardValueVec.end());
+  return cardValueVec;
+}
+
 void PokerLog::AllPhases()
 {
   int pot = littleBlind + bigBlind;
@@ -334,10 +349,12 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       {
         Pairs.push_back({value, count(valueVec.begin(), valueVec.end(), value)});
         hasPair = true;
-      }
+      } 
     }
 
+    vector<int> valuesIntVec = ConvertValueToNum(valueVec);
     
+
     
   }
 }
