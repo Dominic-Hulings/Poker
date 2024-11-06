@@ -22,6 +22,7 @@ class PokerLog : CT
     Dealer* pMyDealer;
     std::vector<Player*> playersVec;
     std::vector<int> ConvertValueToNum(std::vector<std::string> values);
+    std::string ConvertNumToValue(int value);
     bool HasAce(std::vector<int> values);
     void Action();
     void Flop();
@@ -31,6 +32,7 @@ class PokerLog : CT
     void Winner(Player* player, int amtWon);
     bool onePlayerLeft();
     int CheckIfNeg(int num, int replaceNumIfNed);
+    int GreaterNum(int num1, int num2);
 };
 
 #endif

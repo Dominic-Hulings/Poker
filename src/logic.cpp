@@ -50,6 +50,21 @@ vector<int> PokerLog::ConvertValueToNum(vector<string> values)
   return cardValueVec;
 }
 
+string PokerLog::ConvertNumToValue(int value)
+{
+  vector<string> cardNumVec;
+
+  if (value != 13)
+  {
+    return Values[value];
+  }
+
+  else
+  {
+    return "Ace";
+  }
+}
+
 bool PokerLog::HasAce(vector<int> values)
 {
   for (int value : values)
@@ -61,6 +76,19 @@ bool PokerLog::HasAce(vector<int> values)
   }
 
   return false;
+}
+
+int PokerLog::GreaterNum(int num1, int num2)
+{
+  if (num1 > num2)
+  {
+    return num1;
+  }
+
+  else
+  {
+    return num2;
+  }
 }
 
 void PokerLog::AllPhases()
@@ -321,7 +349,6 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
   pair<Player*, pair<int, int>> currentPlayerHand;
   vector<string> suitVec;
   vector<string> valueVec;
-  vector<pair<string, int>> Pairs;
   int tempCounter = 0;
   string mostSuit;
 
@@ -338,8 +365,10 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     bool hasStraight = false;
     bool has3OfKind = false;
     bool has4OfKind = false;
+    int highestCardInStraightIndex = 0;
     currentPlayerHand.first = player;
     vector<Card> fieldAndHand = field;
+    vector<pair<string, int>> Pairs;
     fieldAndHand.push_back(player->GETplayerHand().first);
     fieldAndHand.push_back(player->GETplayerHand().second);
 
@@ -391,7 +420,7 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       if (valuesInRow >= 5)
       {
         hasStraight = true;
-        int highestCardInStraightIndex = valuesIntVec.at(nextIndex);
+        highestCardInStraightIndex = valuesIntVec.at(nextIndex);
       }
 
       if (val + 1 == valuesIntVec.at(nextIndex))
@@ -413,9 +442,78 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       currentPlayerHand.second.second = valuesIntVec.back();
     }
 
-    else if (hasPair)
+    if (hasPair)
     {
+      currentPlayerHand.second.first = GreaterNum(2, currentPlayerHand.second.first);
 
+      if (Pairs.size() >= 2)
+      {
+        currentPlayerHand.second.first = GreaterNum(3, currentPlayerHand.second.first)
+      }
+
+      if (has3OfKind)
+      {
+        if (currentPlayerHand.second.first == 3)
+        {
+          currentPlayerHand.second.first = GreaterNum(7, currentPlayerHand.second.first)
+        }
+
+        else
+        {
+          currentPlayerHand.second.first = GreaterNum(4, currentPlayerHand.second.first)
+        }
+
+
+      }
+
+      if (has4OfKind)
+      {
+        currentPlayerHand.second.first = GreaterNum(8, currentPlayerHand.second.first);
+      }
+    }
+
+    if (hasFlush)
+    {
+      currentPlayerHand.second.first = GreaterNum(6, currentPlayerHand.second.first);
+
+      if (hasStraight)
+      {
+        int counter = 0;
+        bool failSFCheck = false;
+        for (int cardVal = highestCardInStraightIndex; counter < 5; counter++)
+        {
+          for (Card card : fieldAndHand)
+          {
+            if (card.first == ConvertNumToValue(cardVal) && card.second == mostSuit)
+            {
+              continue;
+            }
+
+            else
+            {
+              failSFCheck = true;
+              break;
+            }
+          }
+
+          if (!failSFCheck)
+          {
+            //has straight flush
+          }
+
+          else
+          {
+            //has flush
+          }
+        }
+
+      }
+
+    }
+
+    else if (hasStraight)
+    {
+      currentPlayerHand.second.first = GreaterNum(5, currentPlayerHand.second.first);
     }
 
     
