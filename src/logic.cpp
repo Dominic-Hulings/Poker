@@ -365,10 +365,12 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     bool hasStraight = false;
     bool has3OfKind = false;
     bool has4OfKind = false;
+    bool checkIfStraightFlush = true;
     int highestCardInStraightIndex = 0;
     currentPlayerHand.first = player;
     vector<Card> fieldAndHand = field;
     vector<pair<string, int>> Pairs;
+
     fieldAndHand.push_back(player->GETplayerHand().first);
     fieldAndHand.push_back(player->GETplayerHand().second);
 
@@ -436,39 +438,32 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       }
     }
 
-    if (!hasPair && !hasFlush && !hasStraight)
-    {
-      currentPlayerHand.second.first = 1;
-      currentPlayerHand.second.second = valuesIntVec.back();
-    }
-
     if (hasPair)
     {
       currentPlayerHand.second.first = GreaterNum(2, currentPlayerHand.second.first);
 
-      if (Pairs.size() >= 2)
+      if (has4OfKind)
       {
-        currentPlayerHand.second.first = GreaterNum(3, currentPlayerHand.second.first)
+        currentPlayerHand.second.first = GreaterNum(8, currentPlayerHand.second.first);
+        //! break
       }
 
       if (has3OfKind)
       {
-        if (currentPlayerHand.second.first == 3)
-        {
-          currentPlayerHand.second.first = GreaterNum(7, currentPlayerHand.second.first)
-        }
-
-        else
-        {
-          currentPlayerHand.second.first = GreaterNum(4, currentPlayerHand.second.first)
-        }
-
-
+        currentPlayerHand.second.first = GreaterNum(4, currentPlayerHand.second.first);
+        //! NO break
       }
 
-      if (has4OfKind)
+      if (Pairs.size() >= 2 && has3OfKind)
       {
-        currentPlayerHand.second.first = GreaterNum(8, currentPlayerHand.second.first);
+        currentPlayerHand.second.first = GreaterNum(7, currentPlayerHand.second.first);
+        //! break
+      }
+
+      else if (Pairs.size() >= 2)
+      {
+        currentPlayerHand.second.first = GreaterNum(7, currentPlayerHand.second.first);
+        //! break
       }
     }
 
@@ -478,37 +473,32 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 
       if (hasStraight)
       {
-        int counter = 0;
-        bool failSFCheck = false;
-        for (int cardVal = highestCardInStraightIndex; counter < 5; counter++)
+        for (int counter = 0; counter < 5; counter--)
         {
-          for (Card card : fieldAndHand)
-          {
-            if (card.first == ConvertNumToValue(cardVal) && card.second == mostSuit)
-            {
-              continue;
-            }
+          Card cardCheck = {ConvertNumToValue(highestCardInStraightIndex), mostSuit};
 
-            else
-            {
-              failSFCheck = true;
-              break;
-            }
-          }
-
-          if (!failSFCheck)
+          if (find(fieldAndHand.begin(), fieldAndHand.end(), cardCheck) != fieldAndHand.end())
           {
-            //has straight flush
+            continue;
           }
 
           else
           {
-            //has flush
+            checkIfStraightFlush = false;
+            break;
           }
         }
 
-      }
+        if (checkIfStraightFlush)
+        {
+          currentPlayerHand.second.first = GreaterNum(5, currentPlayerHand.second.first);
 
+          if (highestCardInStraightIndex == 13)
+          {
+            currentPlayerHand.second.first = GreaterNum(10, currentPlayerHand.second.first);
+          }
+        }
+      }
     }
 
     else if (hasStraight)
@@ -517,60 +507,17 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     }
 
     
+
+    
   }
 }
 
 /*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    bool hasFlush = false;
+    bool hasPair = false;
+    bool hasStraight = false;
+    bool has3OfKind = false;
+    bool has4OfKind = false;
 
 
 */
