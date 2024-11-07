@@ -2,7 +2,6 @@
 #define LOGIC_H
 
 #include <vector>
-#include <optional>
 #include "dealer.h"
 #include "player.h"
 #include "global.h"
@@ -33,8 +32,8 @@ class PokerLog : CT
     void WhoWon(std::vector<Player*> players, std::vector<Card> field);
     void Winner(Player* player, int amtWon);
     std::vector<Card> TopFiveCards(std::vector<Card> cards, int handStrength,
-                                  std::optional<std::vector<std::pair<std::string, int>>> pairs,
-                                  std::optional<int> straightHighestCardValue, std::optional<std::string> suit);
+                                  std::vector<std::pair<std::string, int>> pairs,
+                                  int straightHighestCardValue, std::string suit);
     bool onePlayerLeft();
     int CheckIfNeg(int num, int replaceNumIfNed);
     int GreaterNum(int num1, int num2);
