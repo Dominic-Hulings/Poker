@@ -113,12 +113,27 @@ int PokerLog::GreaterNum(int num1, int num2)
   }
 }
 
+int PokerLog::LesserNum(int num1, int num2)
+{
+  if (num1 < num2)
+  {
+    return num1;
+  }
+
+  else
+  {
+    return num2;
+  }
+}
+
 vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
                                         optional<vector<pair<string, int>>> pairs,
                                         optional<int> straightHighestCardValue, optional<string> suit)
 {
   Card cardToRemove1 = {"NULL", "NULL"};
   Card cardToRemove2 = {"NULL", "NULL"};
+  vector<int> valuesInStraight;
+  vector<Card> allFlushCards;
   switch (handStrength)
   {
     case 1:
@@ -162,12 +177,12 @@ vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
     case 3:
       for (Card card : cards)
       {
-        if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove1.first) && card.first != pairs->at(0).first || card.first != Pairs->at(1).first)
+        if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove1.first) && card.first != pairs->at(0).first || card.first != pairs->at(1).first)
         {
           cardToRemove1 = card;
         }
 
-        else if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove2.first) && card.first != pairs->at(0).first || card.first != Pairs->at(1).first)
+        else if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove2.first) && card.first != pairs->at(0).first || card.first != pairs->at(1).first)
         {
           cardToRemove2 = card;
         }
@@ -198,7 +213,7 @@ vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
       }
       break;
     case 5:
-      vector<int> valuesInStraight = {*straightHighestCardValue - 4, *straightHighestCardValue - 3, *straightHighestCardValue - 2, *straightHighestCardValue - 1, *straightHighestCardValue};
+      valuesInStraight = {*straightHighestCardValue - 4, *straightHighestCardValue - 3, *straightHighestCardValue - 2, *straightHighestCardValue - 1, *straightHighestCardValue};
       int valueSeenIndex;
 
       for (Card card : cards)
@@ -232,7 +247,6 @@ vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
       }
       break;
     case 6:
-      vector<Card> allFlushCards;
       for (Card card : cards)
       {
         if (card.second != suit)
@@ -255,25 +269,156 @@ vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
       if (allFlushCards.size() == 6)
       {
         sort(allFlushCards.rbegin(), allFlushCards.rend());
+        cardToRemove2 = allFlushCards.back();
         allFlushCards.pop_back();
       }
 
       else if (allFlushCards.size() == 7)
       {
-        for (Card flushCard : allFlushCards)
+        sort(allFlushCards.rbegin(), allFlushCards.rend());
+        cardToRemove1 = allFlushCards.back();
+        allFlushCards.pop_back();
+        cardToRemove2 = allFlushCards.back();
+        allFlushCards.pop_back();
+      }
+      break;
+    case 7:
+      if (pairs->size() == 2)
+      {
+        for (Card card : cards)
         {
+          if (card.first != pairs->at(0).first || card.first != pairs->at(1).first && cardToRemove1.first == "NULL")
+          {
+            cardToRemove1 = card;
+          }
 
+          else if (card.first != pairs->at(0).first || card.first != pairs->at(1).first && cardToRemove2.first == "NULL")
+          {
+            cardToRemove2 = card;
+            break;
+          }
+
+          else
+          {
+            continue;
+          }
         }
       }
 
-      break;
-    case 7:
+      else
+      {
+        int temp;
+        for (pair<string, int> valAndNum : *pairs)
+        {
+          temp = LesserNum(temp, ConvertValueToNum(valAndNum.first));
+        }
+
+        for (Card card : cards)
+        {
+          if (card.first == ConvertNumToValue(temp) && cardToRemove1.first == "NULL")
+          {
+            cardToRemove1 = card;
+          }
+
+          else if(card.first == ConvertNumToValue(temp) && cardToRemove2.first == "NULL")
+          {
+            cardToRemove2 = card;
+            break;
+          }
+
+          else
+          {
+            continue;
+          }
+        }
+      }
       break;
     case 8:
+      for (Card card : cards)
+      {
+        if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove1.first) && card.first != pairs->at(0).first)
+        {
+          cardToRemove1 = card;
+        }
+
+        else if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove2.first) && card.first != pairs->at(0).first)
+        {
+          cardToRemove2 = card;
+        }
+
+        else
+        {
+          continue;
+        }
+      }
       break;
     case 9:
+      valuesInStraight = {*straightHighestCardValue - 4, *straightHighestCardValue - 3, *straightHighestCardValue - 2, *straightHighestCardValue - 1, *straightHighestCardValue};
+      valueSeenIndex = 0;
+
+      for (Card card : cards)
+      {
+        if (!(ConvertValueToNum(card.first) >= *straightHighestCardValue - 4 && ConvertValueToNum(card.first) <= *straightHighestCardValue))
+        {
+          Card* whichCard = (cardToRemove1.first == "NULL") ? &cardToRemove1 : &cardToRemove2;
+          *whichCard = card;
+
+          if (cardToRemove2.first != "NULL")
+          {
+            break;
+          }
+        }
+
+        else if ((valueSeenIndex = find(valuesInStraight.begin(), valuesInStraight.end(), ConvertValueToNum(card.first)) != valuesInStraight.end()))
+        {
+          valuesInStraight.erase(valuesInStraight.begin() + valueSeenIndex);
+        }
+
+        else
+        {
+          Card* whichCard = (cardToRemove1.first == "NULL") ? &cardToRemove1 : &cardToRemove2;
+          *whichCard = card;
+
+          if (cardToRemove2.first != "NULL")
+          {
+            break;
+          }
+        }
+      }
       break;
     case 10:
+      valuesInStraight = {*straightHighestCardValue - 4, *straightHighestCardValue - 3, *straightHighestCardValue - 2, *straightHighestCardValue - 1, *straightHighestCardValue};
+      valueSeenIndex = 0;
+
+      for (Card card : cards)
+      {
+        if (!(ConvertValueToNum(card.first) >= *straightHighestCardValue - 4 && ConvertValueToNum(card.first) <= *straightHighestCardValue))
+        {
+          Card* whichCard = (cardToRemove1.first == "NULL") ? &cardToRemove1 : &cardToRemove2;
+          *whichCard = card;
+
+          if (cardToRemove2.first != "NULL")
+          {
+            break;
+          }
+        }
+
+        else if ((valueSeenIndex = find(valuesInStraight.begin(), valuesInStraight.end(), ConvertValueToNum(card.first)) != valuesInStraight.end()))
+        {
+          valuesInStraight.erase(valuesInStraight.begin() + valueSeenIndex);
+        }
+
+        else
+        {
+          Card* whichCard = (cardToRemove1.first == "NULL") ? &cardToRemove1 : &cardToRemove2;
+          *whichCard = card;
+
+          if (cardToRemove2.first != "NULL")
+          {
+            break;
+          }
+        }
+      }
       break;
   }
 
@@ -281,7 +426,6 @@ vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
   cards.erase(find(cards.begin(), cards.end(), cardToRemove2));
 
   return cards;
-
 }
 
 void PokerLog::AllPhases()

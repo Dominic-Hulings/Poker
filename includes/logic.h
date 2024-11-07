@@ -23,7 +23,7 @@ class PokerLog : CT
     Dealer* pMyDealer;
     std::vector<Player*> playersVec;
     std::vector<int> ConvertValuesToNum(std::vector<std::string> values);
-    int ConvertValueToNum(std::string values);
+    int ConvertValueToNum(std::string value);
     std::string ConvertNumToValue(int value);
     bool HasAce(std::vector<int> values);
     void Action();
@@ -33,11 +33,12 @@ class PokerLog : CT
     void WhoWon(std::vector<Player*> players, std::vector<Card> field);
     void Winner(Player* player, int amtWon);
     std::vector<Card> TopFiveCards(std::vector<Card> cards, int handStrength,
-                                  std::optional<std::vector<std::pair<std::string, int>>> Pairs,
+                                  std::optional<std::vector<std::pair<std::string, int>>> pairs,
                                   std::optional<int> straightHighestCardValue, std::optional<std::string> suit);
     bool onePlayerLeft();
     int CheckIfNeg(int num, int replaceNumIfNed);
     int GreaterNum(int num1, int num2);
+    int LesserNum(int num1, int num2);
 };
 
 #endif
