@@ -30,7 +30,7 @@ int PokerLog::CheckIfNeg(int num, int replaceNumIfNeg)
   }
 }
 
-vector<int> PokerLog::ConvertValueToNum(vector<string> values)
+vector<int> PokerLog::ConvertValuesToNum(vector<string> values)
 {
   vector<int> cardValueVec;
 
@@ -48,6 +48,27 @@ vector<int> PokerLog::ConvertValueToNum(vector<string> values)
 
   sort(cardValueVec.begin(), cardValueVec.end());
   return cardValueVec;
+}
+
+int PokerLog::ConvertValueToNum(string value)
+{
+  if (value == "NULL")
+  {
+    return 0;
+  }
+
+  auto cardValue = find(Values, Values + 13, value);
+  int index = cardValue - Values;
+
+  if (index == 0)
+  {
+    return 13;
+  }
+
+  else
+  {
+    return index;
+  }
 }
 
 string PokerLog::ConvertNumToValue(int value)
@@ -89,6 +110,58 @@ int PokerLog::GreaterNum(int num1, int num2)
   {
     return num2;
   }
+}
+
+vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength)
+{
+  Card cardToRemove1 = {"NULL", "NULL"};
+  Card cardToRemove2 = {"NULL", "NULL"};
+  switch (handStrength)
+  {
+    case 1:
+      for (Card card : cards)
+      {
+        if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove1.first))
+        {
+          cardToRemove1 = card;
+        }
+
+        else if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove2.first))
+        {
+          cardToRemove2 = card;
+        }
+
+        else
+        {
+          continue;
+        }
+      }
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    case 6:
+      break;
+    case 7:
+      break;
+    case 8:
+      break;
+    case 9:
+      break;
+    case 10:
+      break;
+  }
+
+  cards.erase(find(cards.begin(), cards.end(), cardToRemove1));
+  cards.erase(find(cards.begin(), cards.end(), cardToRemove2));
+  
+  return cards;
+
 }
 
 void PokerLog::AllPhases()
@@ -346,7 +419,7 @@ void PokerLog::River()
 void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 {
   pair<Player*, pair<int, int>> currentWinner;
-  pair<Player*, pair<int, int>> currentPlayerHand;
+  pair<Player*, pair<int, Card[5]>> currentPlayerHand;
   vector<string> suitVec;
   vector<string> valueVec;
   int tempCounter = 0;
@@ -413,7 +486,7 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       } 
     }
 
-    vector<int> valuesIntVec = ConvertValueToNum(valueVec);
+    vector<int> valuesIntVec = ConvertValuesToNum(valueVec);
     int nextIndex = 1;
     int valuesInRow = 1;
 
@@ -462,7 +535,7 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 
       else if (Pairs.size() >= 2)
       {
-        currentPlayerHand.second.first = GreaterNum(7, currentPlayerHand.second.first);
+        currentPlayerHand.second.first = GreaterNum(3, currentPlayerHand.second.first);
         //! break
       }
     }
@@ -491,7 +564,7 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 
         if (checkIfStraightFlush)
         {
-          currentPlayerHand.second.first = GreaterNum(5, currentPlayerHand.second.first);
+          currentPlayerHand.second.first = GreaterNum(9, currentPlayerHand.second.first);
 
           if (highestCardInStraightIndex == 13)
           {
