@@ -32,7 +32,9 @@ class PokerLog : CT
     void River();
     void WhoWon(std::vector<Player*> players, std::vector<Card> field);
     void Winner(Player* player, int amtWon);
-    std::vector<Card> TopFiveCards(std::vector<Card> cards, int handStrength, std::optional<std::vector<std::pair<std::string, int>>> Pairs, std::optional<int> straightHighestCardValue);
+    std::vector<Card> TopFiveCards(std::vector<Card> cards, int handStrength,
+                                  std::optional<std::vector<std::pair<std::string, int>>> Pairs,
+                                  std::optional<int> straightHighestCardValue, std::optional<std::string> suit);
     bool onePlayerLeft();
     int CheckIfNeg(int num, int replaceNumIfNed);
     int GreaterNum(int num1, int num2);
