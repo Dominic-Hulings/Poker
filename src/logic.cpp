@@ -424,6 +424,8 @@ vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
   cards.erase(find(cards.begin(), cards.end(), cardToRemove1));
   cards.erase(find(cards.begin(), cards.end(), cardToRemove2));
 
+  sort(cards.begin(), cards.end());
+
   return cards;
 }
 
@@ -437,7 +439,7 @@ void PokerLog::AllPhases()
   Action();
   River();
   Action();
-  WhoWon(playersVec, pMyDealer->GETfield());
+  Winner(WhoWon(playersVec, pMyDealer->GETfield()), pot);
 }
 
 void PokerLog::PrintField()
@@ -679,9 +681,9 @@ void PokerLog::River()
   PrintField();
 }
 
-void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
+Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 {
-  pair<Player*, pair<int, int>> currentWinner;
+  pair<Player*, pair<int, vector<Card>>> currentWinner;
   pair<Player*, pair<int, vector<Card>>> currentPlayerHand;
   vector<string> suitVec;
   vector<string> valueVec;
@@ -843,7 +845,36 @@ void PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     }
 
     currentPlayerHand.second.second = TopFiveCards(fieldAndHand, currentPlayerHand.second.first, Pairs, straightHighestCardValue, mostSuit);
+    
+    if (currentPlayerHand.second.first > currentWinner.second.first)
+    {
+      currentWinner = currentPlayerHand;
+    }
+
+    else if (currentPlayerHand.second.first == currentWinner.second.first)
+    {
+      for (int counter = 0; counter < 5; counter++)
+      {
+        if (currentPlayerHand.second.second.at(counter) > currentWinner.second.second.at(counter))
+        {
+          currentWinner = currentPlayerHand;
+          break;
+        }
+
+        else if (currentPlayerHand.second.second.at(counter) < currentWinner.second.second.at(counter))
+        {
+          break;
+        }
+      }
+    }
+
+    else
+    {
+      continue;
+    }
   }
+
+  return currentWinner.first;
 }
 
 /*
