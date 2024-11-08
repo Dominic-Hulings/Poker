@@ -157,78 +157,82 @@ vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
   switch (handStrength)
   {
     case 1:
-      for (Card card : cards)
-      {
-        if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove1.first))
-        {
-          cardToRemove1 = card;
-        }
-
-        else if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove2.first))
-        {
-          cardToRemove2 = card;
-        }
-
-        else
-        {
-          continue;
-        }
-      }
+      sort(cards.rbegin(), cards.rend());
+      cardToRemove1 = cards.at(0);
+      cardToRemove2 = cards.at(1);
       break;
     case 2:
-      for (Card card : cards)
+      sort(cards.rbegin(), cards.rend());
+      for (int counter = 0; counter < cards.size(); counter++)
       {
-        if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove1.first) && card.first != pairs.at(0).first)
+        if (cards.at(counter).first == pairs.at(0).first)
         {
-          cardToRemove1 = card;
-        }
-
-        else if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove2.first) && card.first != pairs.at(0).first)
-        {
-          cardToRemove2 = card;
+          continue;
         }
 
         else
         {
-          continue;
+          if (cardToRemove1.first == "NULL")
+          {
+            cardToRemove1 = cards.at(counter);
+            continue;
+          }
+
+          else
+          {
+            cardToRemove2 = cards.at(counter);
+            break;
+          }
         }
       }
       break;
     case 3:
-      for (Card card : cards)
+      sort(cards.rbegin(), cards.rend());
+      for (int counter = 0; counter < cards.size(); counter++)
       {
-        if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove1.first) && card.first != pairs.at(0).first || card.first != pairs.at(1).first)
+        if (cards.at(counter).first == pairs.at(0).first || cards.at(counter).first == pairs.at(1).first)
         {
-          cardToRemove1 = card;
-        }
-
-        else if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove2.first) && card.first != pairs.at(0).first || card.first != pairs.at(1).first)
-        {
-          cardToRemove2 = card;
+          continue;
         }
 
         else
         {
-          continue;
+          if (cardToRemove1.first == "NULL")
+          {
+            cardToRemove1 = cards.at(counter);
+            continue;
+          }
+
+          else
+          {
+            cardToRemove2 = cards.at(counter);
+            break;
+          }
         }
       }
       break;
     case 4:
-      for (Card card : cards)
+      sort(cards.rbegin(), cards.rend());
+      for (int counter = 0; counter < cards.size(); counter++)
       {
-        if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove1.first) && card.first != pairs.at(0).first)
+        if (cards.at(counter).first == pairs.at(0).first)
         {
-          cardToRemove1 = card;
-        }
-
-        else if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove2.first) && card.first != pairs.at(0).first)
-        {
-          cardToRemove2 = card;
+          continue;
         }
 
         else
         {
-          continue;
+          if (cardToRemove1.first == "NULL")
+          {
+            cardToRemove1 = cards.at(counter);
+            continue;
+          }
+
+          else
+          {
+            cardToRemove2 = cards.at(counter);
+            break;
+          }
         }
       }
       break;
@@ -303,72 +307,65 @@ vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
       }
       break;
     case 7:
-      if (pairs.size() == 2)
+      sort(cards.rbegin(), cards.rend());
+      for (int counter = 0; counter < cards.size(); counter++)
       {
-        for (Card card : cards)
+        if (cards.at(counter).first == pairs.at(0).first || cards.at(counter).first == pairs.at(1).first)
         {
-          if (card.first != pairs.at(0).first || card.first != pairs.at(1).first && cardToRemove1.first == "NULL")
-          {
-            cardToRemove1 = card;
-          }
+          continue;
+        }
 
-          else if (card.first != pairs.at(0).first || card.first != pairs.at(1).first && cardToRemove2.first == "NULL")
+        else
+        {
+          if (cardToRemove1.first == "NULL")
           {
-            cardToRemove2 = card;
-            break;
+            cardToRemove1 = cards.at(counter);
+            continue;
           }
 
           else
           {
-            continue;
-          }
-        }
-      }
-
-      else
-      {
-        int temp;
-        for (pair<string, int> valAndNum : pairs)
-        {
-          temp = LesserNum(temp, ConvertValueToNum(valAndNum.first));
-        }
-
-        for (Card card : cards)
-        {
-          if (card.first == ConvertNumToValue(temp) && cardToRemove1.first == "NULL")
-          {
-            cardToRemove1 = card;
-          }
-
-          else if(card.first == ConvertNumToValue(temp) && cardToRemove2.first == "NULL")
-          {
-            cardToRemove2 = card;
+            cardToRemove2 = cards.at(counter);
             break;
-          }
-
-          else
-          {
-            continue;
           }
         }
       }
       break;
     case 8:
-      for (Card card : cards)
+      sort(cards.rbegin(), cards.rend());
+      if (pairs.size() != 1)
       {
-        if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove1.first) && card.first != pairs.at(0).first)
+        if (pairs.at(0).second != 4)
         {
-          cardToRemove1 = card;
-        }
-
-        else if (ConvertValueToNum(card.first) < ConvertValueToNum(cardToRemove2.first) && card.first != pairs.at(0).first)
-        {
-          cardToRemove2 = card;
+          pairs.erase(pairs.begin());
         }
 
         else
         {
+          pairs.erase(pairs.begin() + 1);
+        }
+      }
+
+      for (int counter = 0; counter < cards.size(); counter++)
+      {
+        if (cards.at(counter).first == pairs.at(0).first)
+        {
           continue;
+        }
+
+        else
+        {
+          if (cardToRemove1.first == "NULL")
+          {
+            cardToRemove1 = cards.at(counter);
+            continue;
+          }
+
+          else
+          {
+            cardToRemove2 = cards.at(counter);
+            break;
+          }
         }
       }
       break;
@@ -712,7 +709,6 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
   vector<string> valueVec;
   int tempCounter = 0;
   string mostSuit;
-
   for (Card card : field)
   {
     valueVec.push_back(card.first);
@@ -731,33 +727,31 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     currentPlayerHand.first = player;
     vector<Card> fieldAndHand = field;
     vector<pair<string, int>> Pairs;
+    vector<string> thisSuitVec = suitVec;
+    vector<string> thisValueVec = valueVec;
 
     fieldAndHand.push_back(player->GETplayerHand().first);
     fieldAndHand.push_back(player->GETplayerHand().second);
 
-    suitVec.push_back(player->GETplayerHand().first.second);
-    suitVec.push_back(player->GETplayerHand().second.second);
+    thisSuitVec.push_back(player->GETplayerHand().first.second);
+    thisSuitVec.push_back(player->GETplayerHand().second.second);
 
-    valueVec.push_back(player->GETplayerHand().first.first);
-    valueVec.push_back(player->GETplayerHand().second.first);
+    thisValueVec.push_back(player->GETplayerHand().first.first);
+    thisValueVec.push_back(player->GETplayerHand().second.first);
 
+    cout << "checking for flush\n";
     for (string suit : Suits)
     {
-      if (count(suitVec.begin(), suitVec.end(), suit) > tempCounter)
+      if (count(thisSuitVec.begin(), thisSuitVec.end(), suit) >= 5)
       {
-        tempCounter = count(suitVec.begin(), suitVec.end(), suit);
+        hasFlush = true;
         mostSuit = suit;
       }
     }
-
-    if (tempCounter >= 5)
-    {
-      hasFlush = true;
-    }
-
+    cout << "checking for pairs\n";
     for (string value : Values)
     {
-      if (count(valueVec.begin(), valueVec.end(), value) >= 2)
+      if (count(thisValueVec.begin(), thisValueVec.end(), value) >= 2)
       {
         Pairs.push_back({value, count(valueVec.begin(), valueVec.end(), value)});
         hasPair = true;
@@ -773,8 +767,9 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
         }
       } 
     }
-
-    vector<int> valuesIntVec = ConvertValuesToNum(valueVec);
+    cout << "checking for straight\n";
+    vector<int> valuesIntVec = ConvertValuesToNum(thisValueVec);
+    sort(valuesIntVec.begin(), valuesIntVec.end());
     int nextIndex = 1;
     int valuesInRow = 1;
     
@@ -799,6 +794,10 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       }
     }
 
+    //! /////////////////////////////////////////////////////////
+    cout << "Got to assignment of hand strength\n";
+    currentPlayerHand.second.first = GreaterNum(1, currentPlayerHand.second.first);
+
     if (hasPair)
     {
       currentPlayerHand.second.first = GreaterNum(2, currentPlayerHand.second.first);
@@ -806,25 +805,21 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       if (has4OfKind)
       {
         currentPlayerHand.second.first = GreaterNum(8, currentPlayerHand.second.first);
-        //! break
       }
 
       if (has3OfKind)
       {
         currentPlayerHand.second.first = GreaterNum(4, currentPlayerHand.second.first);
-        //! NO break
       }
 
       if (Pairs.size() >= 2 && has3OfKind)
       {
         currentPlayerHand.second.first = GreaterNum(7, currentPlayerHand.second.first);
-        //! break
       }
 
       else if (Pairs.size() >= 2)
       {
         currentPlayerHand.second.first = GreaterNum(3, currentPlayerHand.second.first);
-        //! break
       }
     }
     
@@ -867,8 +862,9 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       currentPlayerHand.second.first = GreaterNum(5, currentPlayerHand.second.first);
     }
 
+    player->handStrength = currentPlayerHand.second.first;
+    cout << currentPlayerHand.first->GETuserName() << ": " << currentPlayerHand.second.first << "\n";
     currentPlayerHand.second.second = TopFiveCards(fieldAndHand, currentPlayerHand.second.first, Pairs, straightHighestCardValue, mostSuit);
-    player->handStrength =currentPlayerHand.second.first;
 
     if (currentPlayerHand.second.first > currentWinner.second.first)
     {
