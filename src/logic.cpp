@@ -449,8 +449,6 @@ vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
   cards.erase(find(cards.begin(), cards.end(), cardToRemove1));
   cards.erase(find(cards.begin(), cards.end(), cardToRemove2));
 
-  sort(cards.begin(), cards.end());
-
   return cards;
 }
 
@@ -734,6 +732,8 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     int straightHighestCardValue = 0;
     Pairs.clear();
     currentPlayerHand.first = player;
+    currentPlayerHand.second.first = 0;
+    currentPlayerHand.second.second.clear();
     vector<Card> fieldAndHand = field;
     
     vector<string> thisSuitVec = suitVec;
@@ -742,46 +742,30 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     fieldAndHand.push_back(player->GETplayerHand().first);
     fieldAndHand.push_back(player->GETplayerHand().second);
 
-    thisSuitVec.push_back(player->GETplayerHand().first.second);
-    thisSuitVec.push_back(player->GETplayerHand().second.second);
-
-    thisValueVec.push_back(player->GETplayerHand().first.first);
-    thisValueVec.push_back(player->GETplayerHand().second.first);
-
-    cout << "checking for flush\n";
-    for (string suit : Suits)
-    {
-      if (count(thisSuitVec.begin(), thisSuitVec.end(), suit) >= 5)
-      {
-        hasFlush = true;
-        mostSuit = suit;
-      }
-    }
-    cout << "checking for pairs\n";
     for (string value : Values)
     {
       if (count(thisValueVec.begin(), thisValueVec.end(), value) >= 2)
       {
-        Pairs.push_back({value, count(valueVec.begin(), valueVec.end(), value)});
+        Pairs.push_back({value, count(thisValueVec.begin(), thisValueVec.end(), value)});
         hasPair = true;
 
-        if (count(valueVec.begin(), valueVec.end(), value) == 3)
+        if (count(thisValueVec.begin(), thisValueVec.end(), value) == 3)
         {
           has3OfKind = true;
         }
 
-        if (count(valueVec.begin(), valueVec.end(), value) == 4)
+        if (count(thisValueVec.begin(), thisValueVec.end(), value) == 4)
         {
           has4OfKind = true;
         }
       } 
     }
-    cout << "checking for straight\n";
+
     vector<int> valuesIntVec = ConvertValuesToNum(thisValueVec);
     int nextIndex = 1;
     int valuesInRow = 1;
     
-    for (int counter = 0; counter < valuesIntVec.size() - 1; counter++)
+    for (int counter = 0; counter < valuesIntVec.size() - 2; counter++)
     {
       if (valuesIntVec.at(counter) + 1 == valuesIntVec.at(nextIndex))
       {
@@ -801,9 +785,7 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
         straightHighestCardValue = valuesIntVec.at(nextIndex);
       }
     }
-
-    //! /////////////////////////////////////////////////////////
-    cout << "Got to assignment of hand strength\n";
+    
     currentPlayerHand.second.first = GreaterNum(1, currentPlayerHand.second.first);
 
     if (hasPair)
@@ -837,7 +819,7 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 
       if (hasStraight)
       {
-        for (int counter = 0; counter < 5; counter--)
+        for (int counter = 0; counter < 5; counter++)
         {
           Card cardCheck = {ConvertNumToValue(straightHighestCardValue), mostSuit};
 
@@ -883,17 +865,20 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     {
       for (int counter = 0; counter < 5; counter++)
       {
-        if (currentPlayerHand.second.second.at(counter) > currentWinner.second.second.at(counter))
+        cout << currentPlayerHand.second.second.at(counter).first << "\n";
+        cout << currentWinner.second.second.at(counter).first << "\n";
+        if (currentPlayerHand.second.second.at(counter).first > currentWinner.second.second.at(counter).first)
         {
           currentWinner = currentPlayerHand;
           break;
         }
 
-        else if (currentPlayerHand.second.second.at(counter) < currentWinner.second.second.at(counter))
+        else
         {
           continue;
         }
       }
+      cout << currentWinner.first->GETuserName() << "\n";
     }
 
     else
@@ -901,6 +886,5 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       continue;
     }
   }
-
   return currentWinner.first;
 }
