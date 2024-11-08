@@ -5,7 +5,7 @@
 
 #include "logic.h"
 
-using std::string, std::cout, std::cin, std::vector, std::pair;
+using std::string, std::cout, std::cin, std::vector, std::pair, std::to_string;
 
 PokerLog::PokerLog(Dealer* inpDealer, int inToAct, std::vector<Player*>* inpPlayersVec, int inPlayersToDeal, int inLittleBlind, int inBigBlind)
 {
@@ -33,12 +33,17 @@ int PokerLog::CheckIfNeg(int num, int replaceNumIfNeg)
 vector<int> PokerLog::ConvertValuesToNum(vector<string> values)
 {
   vector<int> cardValueVec;
+  int counter = 0;
 
-  for (int counter = 0; counter < 7; counter++)
+  for (string value : Values)
   {
-    auto cardValue = find(Values, Values + 13, values[counter]);
-    int index = cardValue - Values;
-    cardValueVec.push_back(index);
+    replace(values.begin(), values.end(), value, to_string(counter));
+    counter++;
+  }
+
+  for (string strValue : values)
+  {
+    cardValueVec.push_back(stoi(strValue));
   }
 
   if (HasAce(cardValueVec) != 0)
@@ -55,13 +60,21 @@ vector<int> PokerLog::ConvertValuesToNum(vector<string> values)
 
 int PokerLog::ConvertValueToNum(string value)
 {
+  int index;
+
   if (value == "NULL")
   {
     return 0;
   }
 
-  auto cardValue = find(Values, Values + 13, value);
-  int index = cardValue - Values;
+  for (int counter = 0; counter < 13; counter++)
+  {
+    if (Values.at(counter) == value)
+    {
+      index = counter;
+      break;
+    }
+  }
 
   if (index == 0)
   {
@@ -771,13 +784,11 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     }
     cout << "checking for straight\n";
     vector<int> valuesIntVec = ConvertValuesToNum(thisValueVec);
-    sort(valuesIntVec.begin(), valuesIntVec.end());
     int nextIndex = 1;
     int valuesInRow = 1;
     
     for (int counter = 0; counter < valuesIntVec.size() - 1; counter++)
     {
-
       if (valuesIntVec.at(counter) + 1 == valuesIntVec.at(nextIndex))
       {
         nextIndex++;
@@ -886,7 +897,7 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 
         else if (currentPlayerHand.second.second.at(counter) < currentWinner.second.second.at(counter))
         {
-          break;
+          continue;
         }
       }
     }
