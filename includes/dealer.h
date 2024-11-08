@@ -15,10 +15,11 @@ class Dealer : CT
     int GETButtonPosition();
     std::pair<int, int> GETblinds();
     std::vector<Card> GETfield();
-    void preHandCheck(std::vector<Player *> *p2pPlayerIDsVec);
+    void preHandCheck(std::vector<Player *> *p2pPlayerIDsVec, bool isTest);
     void SETplayersToDeal(int players);
     void SETblinds(std::pair<int, int> blinds);
     void PlayCardsToField(int amtOfCards);
+    void ClearField();
 
   protected:
     int playersToDeal;
@@ -32,7 +33,7 @@ class Dealer : CT
   private:
     std::stack<Card> DealerDeck;
     std::vector<Card> Field;
-    Player *Hand(bool isTime, std::vector<Player *> *p2pPlayerIDsVec);
+    Player *Hand(bool isTime, std::vector<Player *> *p2pPlayerIDsVec, bool isTest);
     void SETbuttonPosition(int buttonPos);
 };
 

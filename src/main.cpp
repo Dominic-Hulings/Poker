@@ -23,7 +23,7 @@ int main() //* Where the main function will be, just used for testing as of now
 
   // NewTable.NewPlayerJoin(Guest2.GETpSelfPointer());
 
-  NewTable.NewHand();
+  NewTable.TestNewHand();
 
   return 1;
 }

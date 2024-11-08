@@ -19,6 +19,7 @@ class Table
     void SETdBlinds(std::pair<int, int> blinds);
     int NewPlayerJoin(Player *pPlayer);
     void NewHand();
+    void TestNewHand();
     std::vector<Player *> pPlayerIDsVec;    //* Stores as {playerID, userName}
     std::vector<Player *> *p2pPlayerIDsVec; //* Stores a pointer to pPlayerIDsVec
   private:

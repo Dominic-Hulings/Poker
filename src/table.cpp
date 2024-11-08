@@ -62,7 +62,13 @@ void Table::SETmaxPlayers(int max)
 void Table::NewHand()
 {
   this->TableDealer.SETplayersToDeal(this->GETplayerCount() - 1);
-  this->TableDealer.preHandCheck(p2pPlayerIDsVec);
+  this->TableDealer.preHandCheck(p2pPlayerIDsVec, false);
+}
+
+void Table::TestNewHand()
+{
+  this->TableDealer.SETplayersToDeal(this->GETplayerCount() - 1);
+  this->TableDealer.preHandCheck(p2pPlayerIDsVec, true);
 }
 
 //*******************/

@@ -1,4 +1,4 @@
-#include <iostream>
+//#include <iostream>
 #include <vector>
 // #include <array>
 
@@ -8,7 +8,7 @@
 #include "logic.h"
 #include "player.h"
 
-using std::string, std::vector, std::cout;
+using std::string, std::vector;
 
 typedef CT::Card Card;
 
@@ -72,18 +72,36 @@ void Dealer::PlayCardsToField(int amtOfCards)
   }
 }
 
+void Dealer::ClearField()
+{
+  Field.clear();
+}
+
 std::vector<Card> Dealer::GETfield()
 {
   return Field;
 }
 
-void Dealer::preHandCheck(std::vector<Player *> *p2pPlayerIDsVec)
+void Dealer::preHandCheck(std::vector<Player*> *p2pPlayerIDsVec, bool isTest)
 {
   // TODO: Check if its time to start a new hand and return true or false and pass it to Hand function
-  this->Hand(true, p2pPlayerIDsVec);
+  if (!Field.empty())
+  {
+    ClearField();
+  }
+
+  if (!isTest)
+  {
+    this->Hand(true, p2pPlayerIDsVec, false);
+  }
+
+  else
+  {
+    this->Hand(true, p2pPlayerIDsVec, true);
+  }
 }
 
-Player *Dealer::Hand(bool isTimeToDeal, std::vector<Player *> *p2pPlayerIDsVec)
+Player *Dealer::Hand(bool isTimeToDeal, std::vector<Player *> *p2pPlayerIDsVec, bool isTest)
 {
   //* DEAL CARDS TO PLAYERS {
   if (!isTimeToDeal)
@@ -123,9 +141,19 @@ Player *Dealer::Hand(bool isTimeToDeal, std::vector<Player *> *p2pPlayerIDsVec)
 
   //* PLAY HAND {
 
-  vector<Player*>* pPlayersVec = &playersVec;
-  PokerLog Logic(this, toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind);
-  Logic.AllPhases();
+  if (!isTest)
+  {
+    vector<Player*>* pPlayersVec = &playersVec;
+    PokerLog Logic(this, toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind);
+    Logic.AllPhases();
+  }
+
+  else
+  {
+    vector<Player*>* pPlayersVec = &playersVec;
+    PokerLog Logic(this, toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind);
+    Logic.TestFieldAndWin();
+  }
 
   //* PLAY HAND }
 

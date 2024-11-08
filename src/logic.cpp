@@ -125,6 +125,14 @@ int PokerLog::LesserNum(int num1, int num2)
   }
 }
 
+void PokerLog::TestFieldAndWin()
+{
+  int pot = littleBlind + bigBlind;
+  pMyDealer->PlayCardsToField(5);
+  PrintField();
+  Winner(WhoWon(playersVec, pMyDealer->GETfield()), pot);
+}
+
 vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
                                         vector<pair<string, int>> pairs,
                                         int straightHighestCardValue, string suit)

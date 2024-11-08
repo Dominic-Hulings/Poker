@@ -10,6 +10,7 @@ class PokerLog : CT
 {
   public:
     PokerLog(Dealer* inpDealer, int inToAct, std::vector<Player*>* inpPlayersVec, int inPlayersToDeal, int inLittleBlind, int inBigBlind);
+    void TestFieldAndWin();
     void PrintField();
     void AllPhases();
 
