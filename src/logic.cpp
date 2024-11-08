@@ -48,7 +48,8 @@ vector<int> PokerLog::ConvertValuesToNum(vector<string> values)
 
   if (HasAce(cardValueVec) != 0)
   {
-    for (int counter = 0; counter < HasAce(cardValueVec); counter++)
+    int numOfAces = HasAce(cardValueVec);
+    for (int counter = 0; counter < numOfAces; counter++)
       {
         cardValueVec.push_back(13);
       }
@@ -76,30 +77,12 @@ int PokerLog::ConvertValueToNum(string value)
     }
   }
 
-  if (index == 0)
-  {
-    return 13;
-  }
-
-  else
-  {
-    return index;
-  }
+  return index;
 }
 
 string PokerLog::ConvertNumToValue(int value)
 {
-  vector<string> cardNumVec;
-
-  if (value != 13)
-  {
-    return Values[value];
-  }
-
-  else
-  {
-    return "Ace";
-  }
+  return Values[value];
 }
 
 int PokerLog::HasAce(vector<int> values)
@@ -910,13 +893,3 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
 
   return currentWinner.first;
 }
-
-/*
-    bool hasFlush = false;
-    bool hasPair = false;
-    bool hasStraight = false;
-    bool has3OfKind = false;
-    bool has4OfKind = false;
-
-
-*/
