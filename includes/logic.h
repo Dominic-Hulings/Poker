@@ -25,7 +25,7 @@ class PokerLog : CT
     std::vector<int> ConvertValuesToNum(std::vector<std::string> values);
     int ConvertValueToNum(std::string value);
     std::string ConvertNumToValue(int value);
-    int HasAce(std::vector<int> values);
+    bool HasAce(std::vector<int> values);
     void Action();
     void Flop();
     void Turn();

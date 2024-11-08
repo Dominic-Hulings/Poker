@@ -46,13 +46,20 @@ vector<int> PokerLog::ConvertValuesToNum(vector<string> values)
     cardValueVec.push_back(stoi(strValue));
   }
 
-  if (HasAce(cardValueVec) != 0)
+  if (HasAce(cardValueVec))
   {
-    int numOfAces = HasAce(cardValueVec);
-    for (int counter = 0; counter < numOfAces; counter++)
+    for (int num : cardValueVec)
+    {
+      if (num == 0)
       {
         cardValueVec.push_back(13);
       }
+
+      else
+      {
+        continue;
+      }
+    }
   }
 
   sort(cardValueVec.begin(), cardValueVec.end());
@@ -85,18 +92,22 @@ string PokerLog::ConvertNumToValue(int value)
   return Values[value];
 }
 
-int PokerLog::HasAce(vector<int> values)
+bool PokerLog::HasAce(vector<int> values)
 {
-  int numOfAces;
   for (int value : values)
   {
     if (value == 0)
     {
-      numOfAces++;
+      return true;
+    }
+
+    else
+    {
+      continue;
     }
   }
 
-  return numOfAces;
+  return false;
 }
 
 int PokerLog::GreaterNum(int num1, int num2)
