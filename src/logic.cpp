@@ -41,9 +41,12 @@ vector<int> PokerLog::ConvertValuesToNum(vector<string> values)
     cardValueVec.push_back(index);
   }
 
-  if (HasAce(cardValueVec))
+  if (HasAce(cardValueVec) != 0)
   {
-    cardValueVec.push_back(13);
+    for (int counter = 0; counter < HasAce(cardValueVec); counter++)
+      {
+        cardValueVec.push_back(13);
+      }
   }
 
   sort(cardValueVec.begin(), cardValueVec.end());
@@ -86,17 +89,18 @@ string PokerLog::ConvertNumToValue(int value)
   }
 }
 
-bool PokerLog::HasAce(vector<int> values)
+int PokerLog::HasAce(vector<int> values)
 {
+  int numOfAces;
   for (int value : values)
   {
     if (value == 0)
     {
-      return true;
+      numOfAces++;
     }
   }
 
-  return false;
+  return numOfAces;
 }
 
 int PokerLog::GreaterNum(int num1, int num2)
@@ -130,6 +134,14 @@ void PokerLog::TestFieldAndWin()
   int pot = littleBlind + bigBlind;
   pMyDealer->PlayCardsToField(5);
   PrintField();
+  for (Player* player : playersVec)
+  {
+    cout << player->GETuserName() << "\n";
+    pair<Card, Card> pHand = player->GETplayerHand();
+    cout << pHand.first.first << " of " << pHand.first.second << "\n";
+    cout << pHand.second.first << " of " << pHand.second.second << "\n\n";
+  }
+
   Winner(WhoWon(playersVec, pMyDealer->GETfield()), pot);
 }
 
@@ -762,8 +774,8 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     vector<int> valuesIntVec = ConvertValuesToNum(valueVec);
     int nextIndex = 1;
     int valuesInRow = 1;
-
-    for (int val : valuesIntVec)
+    
+    for (int counter = 0; counter < valuesIntVec.size() - 1; counter++)
     {
       if (valuesInRow >= 5)
       {
@@ -771,7 +783,7 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
         straightHighestCardValue = valuesIntVec.at(nextIndex);
       }
 
-      if (val + 1 == valuesIntVec.at(nextIndex))
+      if (valuesIntVec.at(counter) + 1 == valuesIntVec.at(nextIndex))
       {
         nextIndex++;
         valuesInRow++;
@@ -812,7 +824,7 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
         //! break
       }
     }
-
+    
     if (hasFlush)
     {
       currentPlayerHand.second.first = GreaterNum(6, currentPlayerHand.second.first);
@@ -853,7 +865,7 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     }
 
     currentPlayerHand.second.second = TopFiveCards(fieldAndHand, currentPlayerHand.second.first, Pairs, straightHighestCardValue, mostSuit);
-    
+
     if (currentPlayerHand.second.first > currentWinner.second.first)
     {
       currentWinner = currentPlayerHand;
