@@ -31,7 +31,7 @@ class PokerLog : CT
     void Turn();
     void River();
     Player* WhoWon(std::vector<Player*> players, std::vector<Card> field);
-    void Winner(Player* player, int amtWon);
+    void Winner(Player* player, int amtWon, int handStrength);
     std::vector<Card> TopFiveCards(std::vector<Card> cards, int handStrength,
                                   std::vector<std::pair<std::string, int>> pairs,
                                   int straightHighestCardValue, std::string suit);

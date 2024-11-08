@@ -17,6 +17,7 @@ class Player : CT
     void GIVEplayerCard(Card givenCard);
     int blindInput(int amount, int blind);
     void SETplayerStack(int amt, bool isRemoving);  //* if isRemoving = false then add the total instead
+    int handStrength;
     int blind;
     bool turnOver;
     int amtInPot;

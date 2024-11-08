@@ -142,7 +142,8 @@ void PokerLog::TestFieldAndWin()
     cout << pHand.second.first << " of " << pHand.second.second << "\n\n";
   }
 
-  Winner(WhoWon(playersVec, pMyDealer->GETfield()), pot);
+  Player* winningPlayer = WhoWon(playersVec, pMyDealer->GETfield());
+  Winner(winningPlayer, pot, winningPlayer->handStrength);
 }
 
 vector<CT::Card> PokerLog::TopFiveCards(vector<Card> cards, int handStrength,
@@ -459,7 +460,8 @@ void PokerLog::AllPhases()
   Action();
   River();
   Action();
-  Winner(WhoWon(playersVec, pMyDealer->GETfield()), pot);
+  Player* winningPlayer = WhoWon(playersVec, pMyDealer->GETfield());
+  Winner(winningPlayer, pot, winningPlayer->handStrength);
 }
 
 void PokerLog::PrintField()
@@ -477,9 +479,10 @@ bool PokerLog::onePlayerLeft()
   return playersToDeal == 0;
 }
 
-void PokerLog::Winner(Player* player, int amtWon)
+void PokerLog::Winner(Player* player, int amtWon, int handStrength)
 {
-  cout << player->GETuserName() << " won " << amtWon << "!\n";
+  string possibleHands[10] = {"High Card", "One Pair", "Two Pair", "Three-of-a-Kind", "Straight", "Flush", "Full House", "Four-of-a-Kind", "Straight Flush", "Royal Flush"};
+  cout << player->GETuserName() << " won " << amtWon << " with a " << possibleHands[handStrength - 1] << "\n";
   player->SETplayerStack(pot, false);
 }
 
@@ -587,7 +590,7 @@ void PokerLog::Action()
         playersToDeal--;
         if(onePlayerLeft())
         {
-          Winner(playersVec.at(toAct), pot);
+          Winner(playersVec.at(toAct), pot, playersVec.at(toAct)->handStrength);
         }
       }
 
@@ -658,7 +661,7 @@ void PokerLog::Action()
         playersToDeal--;
         if(onePlayerLeft())
         {
-          Winner(playersVec.at(toAct), pot);
+          Winner(playersVec.at(toAct), pot, playersVec.at(toAct)->handStrength);
         }
       }
 
@@ -865,6 +868,7 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     }
 
     currentPlayerHand.second.second = TopFiveCards(fieldAndHand, currentPlayerHand.second.first, Pairs, straightHighestCardValue, mostSuit);
+    player->handStrength =currentPlayerHand.second.first;
 
     if (currentPlayerHand.second.first > currentWinner.second.first)
     {
