@@ -709,6 +709,7 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
   vector<string> valueVec;
   int tempCounter = 0;
   string mostSuit;
+  vector<pair<string, int>> Pairs;
   for (Card card : field)
   {
     valueVec.push_back(card.first);
@@ -724,9 +725,10 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     bool has4OfKind = false;
     bool checkIfStraightFlush = true;
     int straightHighestCardValue = 0;
+    Pairs.clear();
     currentPlayerHand.first = player;
     vector<Card> fieldAndHand = field;
-    vector<pair<string, int>> Pairs;
+    
     vector<string> thisSuitVec = suitVec;
     vector<string> thisValueVec = valueVec;
 
@@ -775,11 +777,6 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
     
     for (int counter = 0; counter < valuesIntVec.size() - 1; counter++)
     {
-      if (valuesInRow >= 5)
-      {
-        hasStraight = true;
-        straightHighestCardValue = valuesIntVec.at(nextIndex);
-      }
 
       if (valuesIntVec.at(counter) + 1 == valuesIntVec.at(nextIndex))
       {
@@ -791,6 +788,12 @@ Player* PokerLog::WhoWon(std::vector<Player*> players, std::vector<Card> field)
       {
         nextIndex++;
         valuesInRow = 1;
+      }
+
+      if (valuesInRow >= 5)
+      {
+        hasStraight = true;
+        straightHighestCardValue = valuesIntVec.at(nextIndex);
       }
     }
 
