@@ -25,18 +25,18 @@ private class Table::TableDealer
 }
 */
 
-Table::Table(int inMaxPlayers, string inTableName, bool isSave)
+Table::Table( int inMaxPlayers, string inTableName, bool isSave )
 {
   maxPlayers = inMaxPlayers;
   tableName = inTableName;
   p2pPlayerIDsVec = &pPlayerIDsVec;
-  SETdBlinds({100, 200});
-  SETplayerCount(0);
+  SETdBlinds( { 100, 200 } );
+  SETplayerCount( 0 );
 }
 
-void Table::SETdBlinds(pair<int, int> blinds)
+void Table::SETdBlinds( pair<int, int> blinds )
 {
-  this->TableDealer.SETblinds(blinds);
+  this->TableDealer.SETblinds( blinds );
 }
 
 int Table::GETplayerCount()
@@ -49,33 +49,33 @@ int Table::GETmaxPlayers()
   return maxPlayers;
 }
 
-void Table::SETplayerCount(int pCount)
+void Table::SETplayerCount( int pCount )
 {
   playerCount = pCount;
 }
 
-void Table::SETmaxPlayers(int max)
+void Table::SETmaxPlayers( int max )
 {
   maxPlayers = max;
 }
 
 void Table::NewHand()
 {
-  this->TableDealer.SETplayersToDeal(this->GETplayerCount() - 1);
-  this->TableDealer.preHandCheck(p2pPlayerIDsVec, false);
+  this->TableDealer.SETplayersToDeal( this->GETplayerCount() - 1 );
+  this->TableDealer.preHandCheck( p2pPlayerIDsVec, false );
 }
 
 void Table::TestNewHand()
 {
-  this->TableDealer.SETplayersToDeal(this->GETplayerCount() - 1);
-  this->TableDealer.preHandCheck(p2pPlayerIDsVec, true);
+  this->TableDealer.SETplayersToDeal( this->GETplayerCount() - 1 );
+  this->TableDealer.preHandCheck( p2pPlayerIDsVec, true );
 }
 
 //*******************/
 
-int Table::NewPlayerJoin(Player *pPlayer)
+int Table::NewPlayerJoin( Player* pPlayer )
 {
-  if (!(maxPlayers >= playerCount))
+  if ( !( maxPlayers >= playerCount ) )
   {
     cout << "Max Player limit met and/or exceeded" << "\n";
     return 0;
@@ -84,18 +84,18 @@ int Table::NewPlayerJoin(Player *pPlayer)
   const string charList = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
   std::random_device rDev;
-  std::mt19937 rng(rDev());
-  std::uniform_int_distribution<std::mt19937::result_type> dist62(1, 62);
+  std::mt19937 rng( rDev() );
+  std::uniform_int_distribution<std::mt19937::result_type> dist62( 1, 62 );
   string playerID;
 
-  for (int counter = 0; counter < 20; counter++)
+  for ( int counter = 0; counter < 20; counter++ )
   {
-    playerID += charList[dist62(rng)];
+    playerID += charList[dist62( rng )];
   }
 
-  pPlayer->SETplayerID(playerID);
-  pPlayerIDsVec.push_back(pPlayer->GETpSelfPointer());
-  this->SETplayerCount(this->GETplayerCount() + 1);
+  pPlayer->SETplayerID( playerID );
+  pPlayerIDsVec.push_back( pPlayer->GETpSelfPointer() );
+  this->SETplayerCount( this->GETplayerCount() + 1 );
 
   return 1;
 }

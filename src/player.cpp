@@ -8,12 +8,12 @@ using std::string, std::pair;
 
 typedef CT::Card Card;
 
-Player::Player(string inUserName)
+Player::Player( string inUserName )
 {
   this->userName = inUserName;
   this->pSelfPointer = this;
-  this->playerHand.first = {"clear", "clear"};
-  this->playerHand.second = {"clear", "clear"};
+  this->playerHand.first = { "clear", "clear" };
+  this->playerHand.second = { "clear", "clear" };
   this->playerStack = 5000;
   this->blind = 0;
   this->amtInPot = 0;
@@ -29,7 +29,7 @@ string Player::GETplayerID()
   return playerID;
 }
 
-Player *Player::GETpSelfPointer()
+Player* Player::GETpSelfPointer()
 {
   return pSelfPointer;
 }
@@ -44,9 +44,9 @@ int Player::GETplayerStack()
   return playerStack;
 }
 
-void Player::GIVEplayerCard(Card givenCard)
+void Player::GIVEplayerCard( Card givenCard )
 {
-  if (playerHand.first.first == "clear")
+  if ( playerHand.first.first == "clear" )
   {
     playerHand.first = givenCard;
   }
@@ -57,7 +57,7 @@ void Player::GIVEplayerCard(Card givenCard)
   }
 }
 
-int Player::blindInput(int amount, int blind)
+int Player::blindInput( int amount, int blind )
 {
   this->playerStack -= amount;
   this->blind = blind;
@@ -65,9 +65,9 @@ int Player::blindInput(int amount, int blind)
   return amount;
 }
 
-void Player::SETplayerStack(int amt, bool isRemoving)
+void Player::SETplayerStack( int amt, bool isRemoving )
 {
-  if (!isRemoving)
+  if ( !isRemoving )
   {
     this->playerStack += amt;
   }
@@ -78,7 +78,7 @@ void Player::SETplayerStack(int amt, bool isRemoving)
   }
 }
 
-void Player::SETplayerID(string id)
+void Player::SETplayerID( string id )
 {
   playerID = id;
 }

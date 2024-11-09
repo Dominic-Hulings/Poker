@@ -1,4 +1,4 @@
-//#include <iostream>
+// #include <iostream>
 #include <vector>
 // #include <array>
 
@@ -16,17 +16,17 @@ Dealer::Dealer()
 {
   Deck deck;
 
-  for (int counter = 0; counter < 52; counter++)
+  for ( int counter = 0; counter < 52; counter++ )
   {
-    DealerDeck.push(deck.GETTopMainDeck());
+    DealerDeck.push( deck.GETTopMainDeck() );
   }
 
-  this->SETbuttonPosition(0);
+  this->SETbuttonPosition( 0 );
 }
 
-int Dealer::CheckIfNeg(int num, int replaceNumIfNeg)
+int Dealer::CheckIfNeg( int num, int replaceNumIfNeg )
 {
-  if (num < 0)
+  if ( num < 0 )
   {
     return replaceNumIfNeg;
   }
@@ -44,30 +44,30 @@ int Dealer::GETButtonPosition()
 
 std::pair<int, int> Dealer::GETblinds()
 {
-  return {this->littleBlind, this->bigBlind};
+  return { this->littleBlind, this->bigBlind };
 }
 
-void Dealer::SETplayersToDeal(int players)
+void Dealer::SETplayersToDeal( int players )
 {
   this->playersToDeal = players;
 }
 
-void Dealer::SETbuttonPosition(int inButtonPos)
+void Dealer::SETbuttonPosition( int inButtonPos )
 {
-  buttonPosition = CheckIfNeg(inButtonPos, playersToDeal);
+  buttonPosition = CheckIfNeg( inButtonPos, playersToDeal );
 }
 
-void Dealer::SETblinds(std::pair<int, int> blinds)
+void Dealer::SETblinds( std::pair<int, int> blinds )
 {
   this->littleBlind = blinds.first;
   this->bigBlind = blinds.second;
 }
 
-void Dealer::PlayCardsToField(int amtOfCards)
+void Dealer::PlayCardsToField( int amtOfCards )
 {
-  for(int counter = amtOfCards; counter != 0; counter--)
+  for ( int counter = amtOfCards; counter != 0; counter-- )
   {
-    Field.push_back(DealerDeck.top());
+    Field.push_back( DealerDeck.top() );
     DealerDeck.pop();
   }
 }
@@ -82,29 +82,29 @@ std::vector<Card> Dealer::GETfield()
   return Field;
 }
 
-void Dealer::preHandCheck(std::vector<Player*> *p2pPlayerIDsVec, bool isTest)
+void Dealer::preHandCheck( std::vector<Player*>* p2pPlayerIDsVec, bool isTest )
 {
   // TODO: Check if its time to start a new hand and return true or false and pass it to Hand function
-  if (!Field.empty())
+  if ( !Field.empty() )
   {
     ClearField();
   }
 
-  if (!isTest)
+  if ( !isTest )
   {
-    this->Hand(true, p2pPlayerIDsVec, false);
+    this->Hand( true, p2pPlayerIDsVec, false );
   }
 
   else
   {
-    this->Hand(true, p2pPlayerIDsVec, true);
+    this->Hand( true, p2pPlayerIDsVec, true );
   }
 }
 
-Player *Dealer::Hand(bool isTimeToDeal, std::vector<Player *> *p2pPlayerIDsVec, bool isTest)
+Player* Dealer::Hand( bool isTimeToDeal, std::vector<Player*>* p2pPlayerIDsVec, bool isTest )
 {
   //* DEAL CARDS TO PLAYERS {
-  if (!isTimeToDeal)
+  if ( !isTimeToDeal )
   {
     return 0;
   }
@@ -112,50 +112,50 @@ Player *Dealer::Hand(bool isTimeToDeal, std::vector<Player *> *p2pPlayerIDsVec, 
   vector<Player*> playersVec;
   int counter = 0;
 
-  for (int players = playersToDeal + 1; players; players--)
+  for ( int players = playersToDeal + 1; players; players-- )
   {
-    playersVec.push_back(p2pPlayerIDsVec->at(counter));
+    playersVec.push_back( p2pPlayerIDsVec->at( counter ) );
     counter++;
   }
 
-  int playerBeingDealt = CheckIfNeg(buttonPosition - 1, playersToDeal);
-  int toAct = CheckIfNeg(buttonPosition - 1, playersToDeal);
+  int playerBeingDealt = CheckIfNeg( buttonPosition - 1, playersToDeal );
+  int toAct = CheckIfNeg( buttonPosition - 1, playersToDeal );
 
   do
   {
-    playersVec.at(playerBeingDealt)->GIVEplayerCard(DealerDeck.top());
-    playersVec.at(playerBeingDealt)->turnOver = false;
+    playersVec.at( playerBeingDealt )->GIVEplayerCard( DealerDeck.top() );
+    playersVec.at( playerBeingDealt )->turnOver = false;
     DealerDeck.pop();
-    playerBeingDealt = CheckIfNeg(playerBeingDealt - 1, playersToDeal);
+    playerBeingDealt = CheckIfNeg( playerBeingDealt - 1, playersToDeal );
   }
 
-  while (playersVec.at(buttonPosition)->GETplayerHand().second.second == "clear");
+  while ( playersVec.at( buttonPosition )->GETplayerHand().second.second == "clear" );
   //* DEAL CARDS TO PLAYERS }
 
   //* FORCE BLINDS OUT {
 
-  playersVec.at(toAct)->blindInput(GETblinds().second, 1);
-  playersVec.at(CheckIfNeg(toAct - 1, playersToDeal))->blindInput(GETblinds().first, 2);
+  playersVec.at( toAct )->blindInput( GETblinds().second, 1 );
+  playersVec.at( CheckIfNeg( toAct - 1, playersToDeal ) )->blindInput( GETblinds().first, 2 );
 
   //* FORCE BLINDS OUT }
 
   //* PLAY HAND {
 
-  if (!isTest)
+  if ( !isTest )
   {
     vector<Player*>* pPlayersVec = &playersVec;
-    PokerLog Logic(this, toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind);
+    PokerLog Logic( this, toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind );
     Logic.AllPhases();
   }
 
   else
   {
     vector<Player*>* pPlayersVec = &playersVec;
-    PokerLog Logic(this, toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind);
+    PokerLog Logic( this, toAct, pPlayersVec, playersToDeal, littleBlind, bigBlind );
     Logic.TestFieldAndWin();
   }
 
   //* PLAY HAND }
 
-  return playersVec.at(toAct);
+  return playersVec.at( toAct );
 }
